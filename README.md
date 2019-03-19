@@ -3,16 +3,16 @@ This repository is part of the distributed applications course for Software Engi
 
 
 
+## NuGet Package Manager Console Guide
+* [Link](https://github.com/pkyurkchiev/distributed-applications-se-d/tree/master/documentations/doc_2_nuget-console.md)
+
+
 ## Exercises documentation:
 * [Project Web API Authentication](https://github.com/pkyurkchiev/distributed-applications-se-d/tree/master/documentations/project-authentication.md)
 
 
 ## Setup firebase:
 * [Documentation firebase](https://github.com/pkyurkchiev/distributed-applications-se-d/tree/master/documentations/setup-firebase.md)
-
-
-## NuGet Package Manager Console Guide
-* [Link](https://github.com/pkyurkchiev/distributed-applications-se-d/tree/master/documentations/doc_2_nuget-console.md)
 
 
 #
