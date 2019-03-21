@@ -7,6 +7,10 @@ This repository is part of the distributed applications course for Software Engi
 * [Link](https://github.com/pkyurkchiev/distributed-applications-se-d/tree/master/documentations/doc_2_nuget-console.md)
 
 
+## Where to find WcfTestClient.exe
+* C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\WcfTestClient.exe
+
+
 ## Exercises documentation:
 * [Project Web API Authentication](https://github.com/pkyurkchiev/distributed-applications-se-d/tree/master/documentations/project-authentication.md)
 
