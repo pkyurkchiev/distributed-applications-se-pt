@@ -11,10 +11,6 @@ This repository is part of the distributed applications course for Software Engi
 * C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\WcfTestClient.exe
 
 
-## Exercises documentation:
-* [Project Web API Authentication](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/documentations/project-authentication.md)
-
-
 ## Setup firebase:
 * [Documentation firebase](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/documentations/setup-firebase.md)
 
@@ -44,3 +40,5 @@ This repository is part of the distributed applications course for Software Engi
   * exercises - [1](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/exercises/01)
 * Second day:
   * exercises - [2](https://github.com/pkyurkchiev/distributed-applications-se-d/tree/master/exercises/02)
+* Third day:
+  * exercises - [3](https://github.com/pkyurkchiev/distributed-applications-se-d/tree/master/exercises/03)

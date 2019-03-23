@@ -1,0 +1,20 @@
+﻿@model IEnumerable<MC.Website.Models.DirectorVM>
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>Index</h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</td>
+        </tr>
+        }
+    </table>
