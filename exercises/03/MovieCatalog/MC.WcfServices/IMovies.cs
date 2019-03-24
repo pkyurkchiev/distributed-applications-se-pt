@@ -12,9 +12,6 @@ namespace MC.WcfServices
         List<MovieDto> GetMovies();
 
         [OperationContract]
-        List<MovieDto> GetMoviesByTitle(string title);
-
-        [OperationContract]
         string PostMovie(MovieDto movieDto);
 
         [OperationContract]

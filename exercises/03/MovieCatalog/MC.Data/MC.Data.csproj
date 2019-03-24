@@ -52,9 +52,9 @@
     <Compile Include="Entities\Director.cs" />
     <Compile Include="Entities\Genre.cs" />
     <Compile Include="Entities\Movie.cs" />
-    <Compile Include="Migrations\201903221325411_Initial.cs" />
-    <Compile Include="Migrations\201903221325411_Initial.Designer.cs">
-      <DependentUpon>201903221325411_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201903240712553_Initial.cs" />
+    <Compile Include="Migrations\201903240712553_Initial.Designer.cs">
+      <DependentUpon>201903240712553_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,8 +64,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903221325411_Initial.resx">
-      <DependentUpon>201903221325411_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903240712553_Initial.resx">
+      <DependentUpon>201903240712553_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

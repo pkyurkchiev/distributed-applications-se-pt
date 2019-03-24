@@ -108,6 +108,12 @@ namespace MC.Website.GenreReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGenre/GetGenres", ReplyAction="http://tempuri.org/IGenre/GetGenresResponse")]
         System.Threading.Tasks.Task<MC.Website.GenreReference.GenreDto[]> GetGenresAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGenre/GetGenreById", ReplyAction="http://tempuri.org/IGenre/GetGenreByIdResponse")]
+        MC.Website.GenreReference.GenreDto GetGenreById(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGenre/GetGenreById", ReplyAction="http://tempuri.org/IGenre/GetGenreByIdResponse")]
+        System.Threading.Tasks.Task<MC.Website.GenreReference.GenreDto> GetGenreByIdAsync(int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGenre/PostGenre", ReplyAction="http://tempuri.org/IGenre/PostGenreResponse")]
         string PostGenre(MC.Website.GenreReference.GenreDto genreDto);
         
@@ -154,6 +160,14 @@ namespace MC.Website.GenreReference {
         
         public System.Threading.Tasks.Task<MC.Website.GenreReference.GenreDto[]> GetGenresAsync() {
             return base.Channel.GetGenresAsync();
+        }
+        
+        public MC.Website.GenreReference.GenreDto GetGenreById(int id) {
+            return base.Channel.GetGenreById(id);
+        }
+        
+        public System.Threading.Tasks.Task<MC.Website.GenreReference.GenreDto> GetGenreByIdAsync(int id) {
+            return base.Channel.GetGenreByIdAsync(id);
         }
         
         public string PostGenre(MC.Website.GenreReference.GenreDto genreDto) {

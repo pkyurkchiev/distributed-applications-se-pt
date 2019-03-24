@@ -1,25 +1,22 @@
-﻿@model IEnumerable<MC.Website.Models.MovieVM>
+﻿@model IEnumerable<MC.Website.ViewModels.MovieVM>
 @{
     ViewBag.Title = "Index";
-    var movies = Model.ToList();
 }
 
 <h2>Index</h2>
 
 <table class="table">
-    <tr>
-        <td>@Html.DisplayNameFor(model => model.Title)</td>
-        <td>@Html.DisplayNameFor(model => model.ReleaseDate)</td>
-        <td>@Html.DisplayNameFor(model => model.ReleaseCountry)</td>
-    </tr>
-    <tbody>
-        @for(int i=0; i < movies.Count(); i++)
-        {
+    <thead>
         <tr>
-            <td>@movies[i].Title</td>
-            <td>@movies[i].ReleaseDate</td>
-            <td>@movies[i].ReleaseCountry</td>
+            <td>Title</td>
         </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+            </tr>
         }
     </tbody>
-    </table>
+</table>

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace MC.WcfServices
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Genres" in code, svc and config file together.
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Genre" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select Genre.svc or Genre.svc.cs at the Solution Explorer and start debugging.
-    public class Genres : IGenres
+    public class Genre : IGenre
     {
         #region Properties
         private readonly GenreManagementService _service = new GenreManagementService();
@@ -14,6 +14,11 @@ namespace MC.WcfServices
         public List<GenreDto> GetGenres()
         {
             return _service.Get();
+        }
+
+        public GenreDto GetGenreById(int id)
+        {
+            return _service.GetById(id);
         }
 
         public string PostGenre(GenreDto genreDto)

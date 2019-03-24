@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="89ebfebd-1133-4920-8e50-bf7a000ab628" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4f54f7c8-daa2-4e10-8df1-f9709b57bfaa" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:49820/Movies.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Movies.wsdl" MetadataType="Wsdl" ID="977f3282-c621-4d6a-b780-3e9a7736f20d" SourceId="1" SourceUrl="http://localhost:49820/Movies.svc?wsdl" />
-    <MetadataFile FileName="Movies.xsd" MetadataType="Schema" ID="fecc07a8-55f0-441a-8a0d-7b86bbe3480e" SourceId="1" SourceUrl="http://localhost:49820/Movies.svc?xsd=xsd2" />
-    <MetadataFile FileName="Movies1.xsd" MetadataType="Schema" ID="8d47f005-20cd-49f8-b6a0-894b46a3ec6f" SourceId="1" SourceUrl="http://localhost:49820/Movies.svc?xsd=xsd1" />
-    <MetadataFile FileName="Movies2.xsd" MetadataType="Schema" ID="40e01fea-9b92-4bf4-a4e2-3f4a282f04ec" SourceId="1" SourceUrl="http://localhost:49820/Movies.svc?xsd=xsd0" />
-    <MetadataFile FileName="Movies.disco" MetadataType="Disco" ID="754aa373-9c31-4f99-ab1e-a1c42fed365f" SourceId="1" SourceUrl="http://localhost:49820/Movies.svc?disco" />
+    <MetadataFile FileName="Movies.wsdl" MetadataType="Wsdl" ID="61e16088-8994-4456-a3fc-9cbc0d227edb" SourceId="1" SourceUrl="http://localhost:49820/Movies.svc?wsdl" />
+    <MetadataFile FileName="Movies.xsd" MetadataType="Schema" ID="78604128-61ec-4314-9c99-997e0c4caceb" SourceId="1" SourceUrl="http://localhost:49820/Movies.svc?xsd=xsd2" />
+    <MetadataFile FileName="Movies1.xsd" MetadataType="Schema" ID="33614dc0-5bb6-493a-b439-e4bb15d066b4" SourceId="1" SourceUrl="http://localhost:49820/Movies.svc?xsd=xsd1" />
+    <MetadataFile FileName="Movies2.xsd" MetadataType="Schema" ID="0224b197-a3a8-4c33-8aca-672c00bd17c3" SourceId="1" SourceUrl="http://localhost:49820/Movies.svc?xsd=xsd0" />
+    <MetadataFile FileName="Movies.disco" MetadataType="Disco" ID="8b1461b3-8504-4efe-b8b4-fc5fa89bf827" SourceId="1" SourceUrl="http://localhost:49820/Movies.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

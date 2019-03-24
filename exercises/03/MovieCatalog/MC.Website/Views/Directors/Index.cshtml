@@ -1,20 +1,28 @@
-﻿@model IEnumerable<MC.Website.Models.DirectorVM>
-    @{
-        ViewBag.Title = "Index";
+﻿@model IEnumerable<MC.Website.ViewModels.DirectorVM>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.FirstName)</td>
+        <td>@Html.DisplayNameFor(model => model.LastName)</td>
+        <td>@Html.DisplayNameFor(model => model.UserName)</td>
+        <td></td>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+        <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+        <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+        <td>@Html.ActionLink("Delete", "Delete", new { id = item.Id  })</td>
+    </tr>
     }
-
-    <h2>Index</h2>
-
-    <table class="table">
-        <tr>
-            <th>
-                Name
-            </th>
-        </tr>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</td>
-        </tr>
-        }
-    </table>
+</table>

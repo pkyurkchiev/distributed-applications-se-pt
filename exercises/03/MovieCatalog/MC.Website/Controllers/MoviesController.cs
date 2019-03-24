@@ -1,5 +1,7 @@
-﻿using MC.Website.Models;
+﻿using MC.Website.MovieReference;
+using MC.Website.ViewModels;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace MC.Website.Controllers
@@ -9,17 +11,12 @@ namespace MC.Website.Controllers
         // GET: Movies
         public ActionResult Index()
         {
-            var movieVMs = new List<MovieVM>();
-
-            using (MovieReference.MoviesClient service = new MovieReference.MoviesClient())
+            using (MoviesClient client = new MoviesClient())
             {
-                foreach (var item in service.GetMovies())
-                {
-                    movieVMs.Add(new MovieVM(item));
-                }
-            }
+                List<MovieVM> movieVMs = client.GetMovies().Select(x => new MovieVM(x)).ToList();
 
-            return View(movieVMs);
+                return View(movieVMs);
+            };
         }
     }
 }

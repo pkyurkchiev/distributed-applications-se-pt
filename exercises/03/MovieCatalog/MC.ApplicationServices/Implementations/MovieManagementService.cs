@@ -24,13 +24,6 @@ namespace MC.ApplicationServices.Implementations
             return movieDtos;
         }
 
-        public List<MovieDto> GetByTitle(string title)
-        {
-            List<Movie> movies = _context.Movies.Where(x => x.Title.Contains(title) && x.IsActive == true).ToList();
-
-            return movies.Select(x => new MovieDto(x)).ToList();
-        }
-
         public int Save(MovieDto movieDto)
         {
             Movie movie = new Movie

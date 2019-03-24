@@ -24,6 +24,11 @@ namespace MC.ApplicationServices.Implementations
             return genreDtos;
         }
 
+        public GenreDto GetById(int id)
+        {
+            return new GenreDto(_context.Genres.Find(id));
+        }
+
         public int Save(GenreDto genreDto)
         {
             Genre genre = new Genre

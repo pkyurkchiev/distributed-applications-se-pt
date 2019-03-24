@@ -68,7 +68,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Genres.svc" />
+    <Content Include="Genre.svc" />
     <Content Include="Movies.svc" />
     <Content Include="Service1.svc" />
     <Content Include="Web.config">
@@ -76,10 +76,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Genres.svc.cs">
-      <DependentUpon>Genres.svc</DependentUpon>
+    <Compile Include="Genre.svc.cs">
+      <DependentUpon>Genre.svc</DependentUpon>
     </Compile>
-    <Compile Include="IGenres.cs" />
+    <Compile Include="IGenre.cs" />
     <Compile Include="IMovies.cs" />
     <Compile Include="Movies.svc.cs">
       <DependentUpon>Movies.svc</DependentUpon>

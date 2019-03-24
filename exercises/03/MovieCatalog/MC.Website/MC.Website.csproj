@@ -8,7 +8,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A828DD19-7576-4A02-B7D2-006638D2D001}</ProjectGuid>
+    <ProjectGuid>{C88B7F4B-8D3F-4EEE-B5B4-5CE2D00796B4}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -160,19 +160,18 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Controllers\DirectorsController.cs" />
-    <Compile Include="Controllers\GenresController.cs" />
+    <Compile Include="Controllers\GenersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DirectorVM.cs" />
-    <Compile Include="Models\GenreVM.cs" />
-    <Compile Include="Models\MovieVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\DirectorVM.cs" />
+    <Compile Include="ViewModels\GenreVM.cs" />
+    <Compile Include="ViewModels\MovieVM.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\GenreReference\Genre.disco" />
     <None Include="Connected Services\GenreReference\configuration91.svcinfo" />
     <None Include="Connected Services\GenreReference\configuration.svcinfo" />
     <Content Include="Connected Services\GenreReference\MC.Website.GenreReference.GenreDto.datasource">
@@ -252,10 +251,15 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Directors\Index.cshtml" />
-    <Content Include="Views\Genres\Index.cshtml" />
+    <Content Include="Views\Directors\Create.cshtml" />
+    <Content Include="Views\Directors\Delete.cshtml" />
+    <Content Include="Views\Geners\Index.cshtml" />
+    <Content Include="Views\Geners\Create.cshtml" />
+    <Content Include="Views\Geners\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -293,9 +297,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>49746</DevelopmentServerPort>
+          <DevelopmentServerPort>65431</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49746/</IISUrl>
+          <IISUrl>http://localhost:65431/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -25,6 +25,12 @@ namespace MC.WebApiServices.Controllers
         }
 
         [HttpGet]
+        public IHttpActionResult GetById(int id)
+        {
+            return Json(_service.GetById(id));
+        }
+
+        [HttpGet]
         public IHttpActionResult GetByFirstName(string firstName)
         {
             return Json(_service.GetByFirstName(firstName));

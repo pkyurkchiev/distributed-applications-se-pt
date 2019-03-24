@@ -13,6 +13,12 @@
   <wsdl:message name="IGenre_GetGenres_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetGenresResponse" />
   </wsdl:message>
+  <wsdl:message name="IGenre_GetGenreById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGenreById" />
+  </wsdl:message>
+  <wsdl:message name="IGenre_GetGenreById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGenreByIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IGenre_PostGenre_InputMessage">
     <wsdl:part name="parameters" element="tns:PostGenre" />
   </wsdl:message>
@@ -30,6 +36,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IGenre/GetGenres" message="tns:IGenre_GetGenres_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGenre/GetGenresResponse" message="tns:IGenre_GetGenres_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetGenreById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGenre/GetGenreById" message="tns:IGenre_GetGenreById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGenre/GetGenreByIdResponse" message="tns:IGenre_GetGenreById_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="PostGenre">
       <wsdl:input wsaw:Action="http://tempuri.org/IGenre/PostGenre" message="tns:IGenre_PostGenre_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGenre/PostGenreResponse" message="tns:IGenre_PostGenre_OutputMessage" />
@@ -43,6 +53,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetGenres">
       <soap:operation soapAction="http://tempuri.org/IGenre/GetGenres" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGenreById">
+      <soap:operation soapAction="http://tempuri.org/IGenre/GetGenreById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

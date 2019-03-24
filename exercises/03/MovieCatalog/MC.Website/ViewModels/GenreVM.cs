@@ -1,6 +1,6 @@
 ﻿using MC.Website.GenreReference;
 
-namespace MC.Website.Models
+namespace MC.Website.ViewModels
 {
     public class GenreVM
     {

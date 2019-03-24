@@ -15,11 +15,6 @@ namespace MC.WcfServices
         {
             return _service.Get();
         }
-        
-        public List<MovieDto> GetMoviesByTitle(string title)
-        {
-            return _service.GetByTitle(title);
-        }
 
         public string PostMovie(MovieDto movieDto)
         {

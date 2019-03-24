@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5c736e8b-a527-4cf1-b8fb-43ab2ee2babe" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f9438a1b-9fac-40c1-ae27-b89ab16559bc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,14 +19,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:49820/Genre.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:49820/Genre.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Genre.xsd" MetadataType="Schema" ID="127d8908-1895-4860-9b8b-27654cc3b227" SourceId="1" SourceUrl="http://localhost:49820/Genre.svc?xsd=xsd1" />
-    <MetadataFile FileName="Genre1.xsd" MetadataType="Schema" ID="3a366ce9-a33b-41a8-8bf4-f813caddbe3b" SourceId="1" SourceUrl="http://localhost:49820/Genre.svc?xsd=xsd0" />
-    <MetadataFile FileName="Genre2.xsd" MetadataType="Schema" ID="54f93289-9dc7-41c0-8b22-de9ac5a6f4d5" SourceId="1" SourceUrl="http://localhost:49820/Genre.svc?xsd=xsd2" />
-    <MetadataFile FileName="Genre.disco" MetadataType="Disco" ID="225ec81c-aad3-4921-9181-0e5672de48f2" SourceId="1" SourceUrl="http://localhost:49820/Genre.svc?disco" />
-    <MetadataFile FileName="Genre.wsdl" MetadataType="Wsdl" ID="e860f6c4-1b2d-4dbb-bdd4-bfe876a047e6" SourceId="1" SourceUrl="http://localhost:49820/Genre.svc?wsdl" />
+    <MetadataFile FileName="Genre.xsd" MetadataType="Schema" ID="ef44a8ee-0eec-4637-921f-cc60e2a3a999" SourceId="1" SourceUrl="http://localhost:49820/Genre.svc?xsd=xsd1" />
+    <MetadataFile FileName="Genre1.xsd" MetadataType="Schema" ID="e9653481-8fef-4e95-b2c5-b80a9ffce4ab" SourceId="1" SourceUrl="http://localhost:49820/Genre.svc?xsd=xsd0" />
+    <MetadataFile FileName="Genre2.xsd" MetadataType="Schema" ID="917bc9a0-a711-4ba8-b2e5-bbe0f4fb0157" SourceId="1" SourceUrl="http://localhost:49820/Genre.svc?xsd=xsd2" />
+    <MetadataFile FileName="Genre.wsdl" MetadataType="Wsdl" ID="08aae3fb-655a-4519-abc2-537522b33140" SourceId="1" SourceUrl="http://localhost:49820/Genre.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

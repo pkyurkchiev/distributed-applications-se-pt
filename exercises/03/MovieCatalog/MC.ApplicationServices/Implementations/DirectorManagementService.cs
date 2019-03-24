@@ -23,6 +23,11 @@ namespace MC.ApplicationServices.Implementations
             return directors.Select(x => new DirectorDto(x)).ToList();
         }
 
+        public DirectorDto GetById(int id)
+        {
+            return new DirectorDto(_context.Directors.FirstOrDefault(x => x.Id == id));
+        }
+
         public List<DirectorDto> GetByFirstName(string firstName)
         {
             List<Director> directors = _context.Directors.Where(x => x.FirstName == firstName).ToList();
