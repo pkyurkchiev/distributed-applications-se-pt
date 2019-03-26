@@ -1,5 +1,5 @@
 # Introduction to Distributed applications - distance learning
-This repository is part of the distributed applications course for Software Engineering distance learning of Plovdiv University
+This repository is part of the distributed applications course for Software Engineering part time learning of Plovdiv University
 
 
 
