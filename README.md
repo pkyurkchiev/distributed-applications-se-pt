@@ -42,3 +42,5 @@ This repository is part of the distributed applications course for Software Engi
   * exercises - [2](https://github.com/pkyurkchiev/distributed-applications-se-d/tree/master/exercises/02)
 * Third day:
   * exercises - [3](https://github.com/pkyurkchiev/distributed-applications-se-d/tree/master/exercises/03)
+* Fourth day:
+  * exercises - [4](https://github.com/pkyurkchiev/distributed-applications-se-d/tree/master/exercises/04)
