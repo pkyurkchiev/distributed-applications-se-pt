@@ -1,4 +1,4 @@
-# Introduction to Distributed applications - distance learning
+# Introduction to Distributed applications - part time learning
 This repository is part of the distributed applications course for Software Engineering part time learning of Plovdiv University
 
 
