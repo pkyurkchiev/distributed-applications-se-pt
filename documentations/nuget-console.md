@@ -1,7 +1,6 @@
 # NuGet Package Manager Console Guide
 
 
-
 **1. Enable migration to the project**
    - *enable-migrations -contexttypename [context.name]*
 

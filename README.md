@@ -2,37 +2,48 @@
 This repository is part of the distributed applications course for Software Engineering part time learning of Plovdiv University
 
 
+## Exercises documentation:
+* [Tools](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/documentations/tools.md)
+* [Project Web API Authentication](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/documentations/project-authentication.md)
+
 
 ## NuGet Package Manager Console Guide
-* [Link](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/documentations/doc_2_nuget-console.md)
-
-
-## Where to find WcfTestClient.exe
-* C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\WcfTestClient.exe
+* [Link](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/documentations/nuget-console.md)
 
 
 ## Setup firebase:
 * [Documentation firebase](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/documentations/setup-firebase.md)
 
 
+## Azure Cosmos DB
+* [Download Azure Cosmos DB emulator](https://aka.ms/cosmosdb-emulator)
+* [Documentation](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator)
+
+
+## Language Guide (proto3)
+* [Link](https://developers.google.com/protocol-buffers/docs/proto3#packages)
+
+
 #
 ### Daily lectures schedule
 
 * First day:
-  * presentations - [1](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-01.pdf)
-  , [2](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-02.pdf)
-  , [3](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-03.pdf)
-  , [4](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-04.pdf)
-  , [5](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-05.pdf)
-  , [6](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-06.pdf)
-  , [7](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-07.pdf)
-  , [8](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-08.pdf)
+  * presentations - [Distributed application](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-01.pdf)
+  , [Network](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-02.pdf)
+  , [SOAP Web services](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-03.pdf)
+  , [RESTful Web services](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-04.pdf)
+  , [Distributed architectures: Client - Server and N - Tier](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-05.pdf)
+  , [Distributed architectures: SOA](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-06.pdf)
+  , [Distributed architectures: Microservices](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-07.pdf)
 * Second day:
-  * presentations - [9](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-09.pdf)
-  , [10](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-10.pdf)
-  , [11](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-11.pdf)
-  , [12](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-12.pdf)
-  
+  * presentations - [gRPC Web services](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-08.pdf)
+  , [Cloud Computing](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-09.pdf)
+  , [Cloud databases](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-10.pdf)
+  , [Serverless architecture](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-11.pdf)
+  , [Event driven architecture](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-13.pdf)
+  , [Internet of things](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-14.pdf)
+
+
 #
 ### Daily exercises schedule
 
@@ -44,3 +55,8 @@ This repository is part of the distributed applications course for Software Engi
   * exercises - [3](https://github.com/pkyurkchiev/distributed-applications-se-d/tree/master/exercises/03)
 * Fourth day:
   * exercises - [4](https://github.com/pkyurkchiev/distributed-applications-se-d/tree/master/exercises/04)
+
+
+## Additional materials
+* [SOAP](https://docs.microsoft.com/en-us/visualstudio/data-tools/walkthrough-creating-a-simple-wcf-service-in-windows-forms?view=vs-2019)
+* REST  - (link 1)(https://docs.microsoft.com/en-us/aspnet/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api), (link 2)(https://docs.microsoft.com/en-us/aspnet/web-api/overview/data/), (link 3)(https://docs.microsoft.com/en-us/aspnet/web-api/overview/web-api-routing-and-actions/index)
