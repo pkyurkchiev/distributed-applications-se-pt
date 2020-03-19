@@ -11,7 +11,7 @@
   
   
 #
-### Tools to start the projects
+### Tools for start the projects
 * Visual Studio 2019 Community Edition
   *  ASP.NET and web development & .NET Core cross-platform development
   * .Net Core 3.0 - [link](https://dotnet.microsoft.com/download/dotnet-core/3.0)
