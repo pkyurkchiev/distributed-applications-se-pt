@@ -27,7 +27,7 @@ This repository is part of the distributed applications course for Software Engi
 #
 ### Daily lectures schedule
 
-* First day:
+* First & Second day:
   * presentations - [Distributed application](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-01.pdf)
   , [Network](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-02.pdf)
   , [SOAP Web services](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-03.pdf)
@@ -35,7 +35,7 @@ This repository is part of the distributed applications course for Software Engi
   , [Distributed architectures: Client - Server and N - Tier](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-05.pdf)
   , [Distributed architectures: SOA](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-06.pdf)
   , [Distributed architectures: Microservices](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-07.pdf)
-* Second day:
+* Тhird day:
   * presentations - [gRPC Web services](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-08.pdf)
   , [Cloud Computing](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-09.pdf)
   , [Cloud databases](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-10.pdf)
