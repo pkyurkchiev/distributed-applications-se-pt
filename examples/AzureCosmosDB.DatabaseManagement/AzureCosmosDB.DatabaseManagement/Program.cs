@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Azure.Documents.Linq;
 
 namespace AzureCosmosDB.DatabaseManagement
 {
@@ -20,16 +19,21 @@ namespace AzureCosmosDB.DatabaseManagement
             // Connect to the Azure Cosmos Emulator running locally
             using (DocumentClient documentClient = new DocumentClient(databaseUri, primaryKey))
             {
+                // Create database
                 string databaseLink = await CreateDatabase(documentClient, databaseId);
 
+                // Create collection
                 string collectionLink = await CreateCollection(documentClient, databaseLink, collectionId);
 
+                // Create document
                 await CreateBookItem(documentClient, collectionLink, 1);
 
+                // Delete database
                 await DeleteDatabase(documentClient, databaseId);
             }
 
         }
+
         private static async Task<string> CreateDatabase(DocumentClient documentClient, string databaseId)
         {
             Database database = documentClient.CreateDatabaseQuery().Where(db => db.Id == databaseId).AsEnumerable().FirstOrDefault();

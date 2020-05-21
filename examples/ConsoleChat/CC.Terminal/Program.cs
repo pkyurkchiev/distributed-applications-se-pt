@@ -20,7 +20,8 @@ namespace CC.Terminal
 
             Console.WriteLine("*******************************************************");
 
-            var client = new FirebaseClient("https://testproj-b0585.firebaseio.com/");
+            string myproject = "da-test-a98d2";
+            var client = new FirebaseClient($"https://{myproject}.firebaseio.com/");
             var child = client.Child("messages");
 
             var observable = child.AsObservable<InboundMessage>();

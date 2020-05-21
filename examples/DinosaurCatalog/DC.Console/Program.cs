@@ -14,7 +14,8 @@ namespace DC.Treminal
 
         private async Task Run()
         {
-            var firebase = new FirebaseClient("https://testproj-b0585.firebaseio.com/");
+            string myproject = "da-test-a98d2";
+            var firebase = new FirebaseClient($"https://{myproject}.firebaseio.com/");
 
             var dinos = await firebase
               .Child("dinosaurs")
