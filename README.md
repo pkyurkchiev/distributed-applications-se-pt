@@ -61,5 +61,5 @@ This repository is part of the distributed applications course for Software Engi
 
 
 ## Additional materials
-* SOAP - [link 1](https://docs.microsoft.com/en-us/visualstudio/data-tools/walkthrough-creating-a-simple-wcf-service-in-windows-forms?view=vs-2019)
+* SOAP - [link 1](https://docs.microsoft.com/en-us/visualstudio/data-tools/walkthrough-creating-a-simple-wcf-service-in-windows-forms?view=vs-2019), [link 2](https://www.c-sharpcorner.com/UploadFile/0c1bb2/creating-wcf-service-using-Asp-Net-C-Sharp/)
 * REST - [link 1](https://docs.microsoft.com/en-us/aspnet/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api), [link 2](https://docs.microsoft.com/en-us/aspnet/web-api/overview/data/), [link 3](https://docs.microsoft.com/en-us/aspnet/web-api/overview/web-api-routing-and-actions/index)
