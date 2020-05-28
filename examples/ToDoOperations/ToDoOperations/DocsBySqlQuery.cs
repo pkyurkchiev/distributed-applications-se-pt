@@ -26,7 +26,7 @@ namespace ToDoOperations
             {
                 log.LogInformation(toDoItem.Description);
             }
-            return new OkResult();
+            return new OkObjectResult(toDoItems);
         }
     }
 }

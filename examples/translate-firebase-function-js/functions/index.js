@@ -3,7 +3,7 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
-const translate = require('@google-cloud/translate')();
+const translate = require('@google-cloud/translate').v2;
 
 // List of output languages.
 const LANGUAGES = ['en', 'es', 'de', 'fr', 'sv', 'ga', 'it', 'jp'];

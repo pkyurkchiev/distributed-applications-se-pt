@@ -32,10 +32,10 @@ namespace ToDoOperations
             }
 
 
-            document.SetPropertyValue("IsCompleted", updated.IsCompleted);
+            document.SetPropertyValue("isCompleted", updated.IsCompleted);
             if (!string.IsNullOrEmpty(updated.Description))
             {
-                document.SetPropertyValue("TaskDescription", updated.Description);
+                document.SetPropertyValue("description", updated.Description);
             }
 
             await client.ReplaceDocumentAsync(document, options: new RequestOptions { PartitionKey = new Microsoft.Azure.Documents.PartitionKey(id) });

@@ -31,7 +31,7 @@ namespace ToDoOperations
             {
                 log.LogInformation($"Found ToDo item, Description={toDoItem.Description}");
             }
-            return new OkResult();
+            return new OkObjectResult(toDoItem);
         }
     }
 }
