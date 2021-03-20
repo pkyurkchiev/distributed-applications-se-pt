@@ -14,5 +14,6 @@
 ### Tools for start the projects
 * Visual Studio 2019 Community Edition
   *  ASP.NET and web development & .NET Core cross-platform development
-  * .Net Core 3.0 - [link](https://dotnet.microsoft.com/download/dotnet-core/3.1)
-  * .Net Framework 4.7 - [link](https://dotnet.microsoft.com/download/dotnet-framework)
+  * .Net 5 - [link](https://dotnet.microsoft.com/download/dotnet)
+  * .Net Core 3.1 - [link](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+  * .Net Framework 4.8 - [link](https://dotnet.microsoft.com/download/dotnet-framework)
