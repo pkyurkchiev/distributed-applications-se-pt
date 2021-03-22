@@ -27,12 +27,13 @@ This repository is part of the distributed applications course for Software Engi
 #
 ### Daily lectures schedule
 
-* First & Second day:
+* First day:
   * presentations - [Distributed application](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-01.pdf)
   , [Network](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-02.pdf)
   , [SOAP Web services](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-03.pdf)
   , [RESTful Web services](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-04.pdf)
-  , [Distributed architectures: Client - Server and N - Tier](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-05.pdf)
+* Second day
+  * presentations - [Distributed architectures: Client - Server and N - Tier](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-05.pdf)
   , [Distributed architectures: SOA](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-06.pdf)
   , [Distributed architectures: Microservices](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/presentations/Lecture-07.pdf)
 * Тhird day:
