@@ -2,9 +2,6 @@
 This repository is part of the distributed applications course for Software Engineering part time learning of Plovdiv University
 
 
-## [Test information](http://fmi-plovdiv.org/news.jsp?ln=1&newsId=1854&newsPageNumber=1)
-
-
 ## Exercises documentation:
 * [Tools](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/documentations/tools.md)
 * [Project Web API Authentication](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/documentations/project-authentication.md)
