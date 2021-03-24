@@ -1,6 +1,4 @@
-﻿using MC.Data.Entities;
-
-namespace MC.ApplicationServices.DTOs
+﻿namespace MC.ApplicationServices.DTOs
 {
     public class MovieDto
     {
