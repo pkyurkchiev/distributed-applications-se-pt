@@ -56,5 +56,34 @@ namespace MC.ApplicationServices.Helpers
             return genres.Select(x => x.ToGenreDto());
         }
         #endregion
+
+        #region Director methods
+        public static Director ToDirectorEntity(this DirectorDto directorDto)
+        {
+            return new Director
+            {
+                Id = directorDto.Id,
+                FirstName = directorDto.FirstName,
+                LastName = directorDto.LastName,
+                UserName = directorDto.UserName
+            };
+        }
+
+        public static DirectorDto ToDirectorDto(this Director director)
+        {
+            return new DirectorDto
+            {
+                Id = director.Id,
+                FirstName = director.FirstName,
+                LastName = director.LastName,
+                UserName = director.UserName
+            };
+        }
+
+        public static IEnumerable<DirectorDto> ToDirectorDtos(this IEnumerable<Director> directors)
+        {
+            return directors.Select(x => x.ToDirectorDto());
+        }
+        #endregion
     }
 }

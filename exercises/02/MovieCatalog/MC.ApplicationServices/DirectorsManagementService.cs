@@ -1,27 +1,26 @@
 ﻿using MC.ApplicationServices.DTOs;
 using MC.ApplicationServices.Helpers;
-using MC.Data.Contexts;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 
 namespace MC.ApplicationServices
 {
-    public class MoviesManagementService : BaseManagementService
+    public class DirectorsManagementService : BaseManagementService
     {
-        public IEnumerable<MovieDto> GetAll()
+        public DirectorDto GetByFirstName(string firstName)
         {
-            return _context.Movies.AsNoTracking().AsEnumerable().ToMovieDtos();
+            return _context.Directors.AsNoTracking().SingleOrDefault(x => x.FirstName == firstName).ToDirectorDto();
         }
 
-        public int Save(MovieDto movieDto)
+        public int Save(DirectorDto directorDto)
         {
             try
             {
-                _context.Movies.Add(movieDto.ToMovieEntity());
+                _context.Directors.Add(directorDto.ToDirectorEntity());
                 _context.SaveChanges();
                 return 1;
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return -1;
             }
@@ -31,15 +30,15 @@ namespace MC.ApplicationServices
         {
             try
             {
-                var movie = _context.Movies.Find(id);
-                if (movie == null)
+                var director = _context.Directors.Find(id);
+                if (director == null)
                     return -1;
 
-                _context.Movies.Remove(movie);
+                _context.Directors.Remove(director);
                 _context.SaveChanges();
                 return 1;
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return -1;
             }

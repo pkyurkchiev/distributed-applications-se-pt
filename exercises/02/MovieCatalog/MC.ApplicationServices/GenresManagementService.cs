@@ -1,17 +1,12 @@
 ﻿using MC.ApplicationServices.DTOs;
 using MC.ApplicationServices.Helpers;
-using MC.Data.Contexts;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace MC.ApplicationServices
 {
-    public class GenresManagementService
+    public class GenresManagementService : BaseManagementService
     {
-        #region
-        private readonly MovieCatalogDbContext _context = new MovieCatalogDbContext();
-        #endregion
-
         public IEnumerable<GenreDto> GetAll()
         {
             return _context.Genres.AsNoTracking().AsEnumerable().ToGenreDtos();

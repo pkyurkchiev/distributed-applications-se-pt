@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseManagementService.cs" />
+    <Compile Include="DirectorsManagementService.cs" />
+    <Compile Include="DTOs\DirectorDto.cs" />
     <Compile Include="DTOs\GenreDto.cs" />
     <Compile Include="Helpers\ConvertHelper.cs" />
     <Compile Include="DTOs\MovieDto.cs" />
