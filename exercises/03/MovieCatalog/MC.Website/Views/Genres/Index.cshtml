@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MC.Website.ViewModels.MovieVM>
+﻿@model IEnumerable<MC.Website.ViewModels.GenreVM>
 
 @{
     ViewBag.Title = "Index";
@@ -8,7 +8,7 @@
 
 @if (!Model.Any())
 {
-    <span class="alert-info">No movie object</span>
+    <span class="alert-info">No genre object</span>
 }
 else
 {
@@ -16,10 +16,7 @@ else
         <thead>
             <tr>
                 <td>#</td>
-                <td>Title</td>
-                <td>Country</td>
-                <td>Genre</td>
-                <td>Director</td>
+                <td>Name</td>
             </tr>
         </thead>
         <tbody>
@@ -27,10 +24,7 @@ else
             {
                 <tr>
                     <td>@item.Id</td>
-                    <td>@item.Title</td>
-                    <td>@item.Country</td>
-                    <td>@item.Genre</td>
-                    <td>@item.DirectorFullName</td>
+                    <td>@item.Name</td>
                 </tr>
             }
         </tbody>

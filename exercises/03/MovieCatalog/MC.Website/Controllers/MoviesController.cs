@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MC.Website.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,7 +14,7 @@ namespace MC.Website.Controllers
         // GET: Movies
         public ActionResult Index()
         {
-            var movies = moviesClient.GetMovies();
+            var movies = moviesClient.GetMovies().Select(x => new MovieVM(x.Id, x.Title, x.Country, x.Genre.Name, x.Director.FirstName + " " + x.Director.LastName));
             return View(movies);
         }
     }
