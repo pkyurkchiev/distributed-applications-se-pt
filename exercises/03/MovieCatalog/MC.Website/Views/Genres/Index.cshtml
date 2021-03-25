@@ -6,6 +6,10 @@
 
 <h2>Index</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
 @if (!Model.Any())
 {
     <span class="alert-info">No genre object</span>
@@ -15,8 +19,9 @@ else
     <table class="table table-striped">
         <thead>
             <tr>
-                <td>#</td>
-                <td>Name</td>
+                <th>#</th>
+                <th>Name</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +30,7 @@ else
                 <tr>
                     <td>@item.Id</td>
                     <td>@item.Name</td>
+                    <td>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</td>
                 </tr>
             }
         </tbody>

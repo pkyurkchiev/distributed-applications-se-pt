@@ -42,7 +42,7 @@
   <xs:element name="Save">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

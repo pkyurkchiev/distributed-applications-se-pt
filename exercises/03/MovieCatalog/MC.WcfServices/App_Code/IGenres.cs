@@ -20,7 +20,7 @@ public interface IGenres
     GenreDto GetById(int id);
 
     [OperationContract]
-    int Save(string title);
+    int Save(string name);
 
     [OperationContract]
     int Delete(int id);

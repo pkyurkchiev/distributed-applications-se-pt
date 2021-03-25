@@ -97,10 +97,10 @@ namespace MC.Website.GenresServiceReference {
         System.Threading.Tasks.Task<MC.Website.GenresServiceReference.GenreDto> GetByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGenres/Save", ReplyAction="http://tempuri.org/IGenres/SaveResponse")]
-        int Save(string title);
+        int Save(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGenres/Save", ReplyAction="http://tempuri.org/IGenres/SaveResponse")]
-        System.Threading.Tasks.Task<int> SaveAsync(string title);
+        System.Threading.Tasks.Task<int> SaveAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGenres/Delete", ReplyAction="http://tempuri.org/IGenres/DeleteResponse")]
         int Delete(int id);
@@ -160,12 +160,12 @@ namespace MC.Website.GenresServiceReference {
             return base.Channel.GetByIdAsync(id);
         }
         
-        public int Save(string title) {
-            return base.Channel.Save(title);
+        public int Save(string name) {
+            return base.Channel.Save(name);
         }
         
-        public System.Threading.Tasks.Task<int> SaveAsync(string title) {
-            return base.Channel.SaveAsync(title);
+        public System.Threading.Tasks.Task<int> SaveAsync(string name) {
+            return base.Channel.SaveAsync(name);
         }
         
         public int Delete(int id) {
