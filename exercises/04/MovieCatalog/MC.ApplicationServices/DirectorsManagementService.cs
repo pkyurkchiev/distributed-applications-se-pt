@@ -13,6 +13,11 @@ namespace MC.ApplicationServices
             return _context.Directors.AsNoTracking().AsEnumerable().ToDirectorDtos();
         }
 
+        public DirectorDto GetById(int id)
+        {
+            return _context.Directors.Find(id).ToDirectorDto();
+        }        
+
         public DirectorDto GetByFirstName(string firstName)
         {
             return _context.Directors.AsNoTracking().SingleOrDefault(x => x.FirstName == firstName).ToDirectorDto();

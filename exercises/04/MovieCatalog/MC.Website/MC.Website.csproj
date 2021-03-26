@@ -226,6 +226,7 @@
     <Content Include="Views\Genres\Delete.cshtml" />
     <Content Include="Views\Directors\Index.cshtml" />
     <Content Include="Views\Directors\Create.cshtml" />
+    <Content Include="Views\Directors\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

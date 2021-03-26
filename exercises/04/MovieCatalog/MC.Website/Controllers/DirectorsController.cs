@@ -20,11 +20,10 @@ namespace MC.Website.Controllers
             using (HttpClient httpClient = new HttpClient())
             {
                 httpClient.BaseAddress = url;
-                httpClient.DefaultRequestHeaders.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 var response = httpClient.GetStringAsync("").Result;
-
                 var directorVMs = JsonConvert.DeserializeObject<IEnumerable<DirectorVM>>(response);
 
                 return View(directorVMs);
@@ -44,7 +43,7 @@ namespace MC.Website.Controllers
             using (HttpClient httpClient = new HttpClient())
             {
                 httpClient.BaseAddress = url;
-                httpClient.DefaultRequestHeaders.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 var stringDirectorVM = JsonConvert.SerializeObject(directorVM);
                 var encodingDirectorVM = System.Text.Encoding.UTF8.GetBytes(stringDirectorVM);
@@ -54,6 +53,37 @@ namespace MC.Website.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            using (HttpClient httpClient = new HttpClient())
+            {
+                httpClient.BaseAddress = url;
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var response = httpClient.GetStringAsync(url + "/" + id).Result;
+                var directorVM = JsonConvert.DeserializeObject<DirectorVM>(response);
+
+                return View(directorVM);
+            }
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteComfirm(int id)
+        {
+            using (HttpClient httpClient = new HttpClient())
+            {
+                httpClient.BaseAddress = url;
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var response = httpClient.DeleteAsync(url + "/" + id).Result;
+
+                return RedirectToAction("Index");
+            }
         }
     }
 }
