@@ -2,9 +2,14 @@
 This repository is part of the distributed applications course for Software Engineering part time learning of Plovdiv University
 
 
+#
+### Course work
+* [Task](https://github.com/pkyurkchiev/distributed-applications-se-pt/blob/master/course-work/README.md)
+* [Assessment Requirements](https://github.com/pkyurkchiev/distributed-applications-se-pt/blob/master/documentations/assessment-requirements.md)
+
+
 ## Exercises documentation:
 * [Tools](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/documentations/tools.md)
-* [Project Web API Authentication](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/documentations/project-authentication.md)
 
 
 ## NuGet Package Manager Console Guide
@@ -49,13 +54,9 @@ This repository is part of the distributed applications course for Software Engi
 ### Daily exercises schedule
 
 * First day:
-  * exercises - [1](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/exercises/01)
+  * exercises - [1](https://github.com/pkyurkchiev/distributed-applications-se-p/tree/master/exercises/net_8/01)
 * Second day:
-  * exercises - [2](https://github.com/pkyurkchiev/distributed-applications-se-d/tree/master/exercises/02)
-* Third day:
-  * exercises - [3](https://github.com/pkyurkchiev/distributed-applications-se-d/tree/master/exercises/03)
-* Fourth day:
-  * exercises - [4](https://github.com/pkyurkchiev/distributed-applications-se-d/tree/master/exercises/04)
+  * exercises - [2](https://github.com/pkyurkchiev/distributed-applications-se-d/tree/master/exercises/net_8/02)
 
 
 ## Additional materials
