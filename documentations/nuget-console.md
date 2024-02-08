@@ -6,5 +6,5 @@
 **2. Update database with applying all changes on the context**
    - *update-database*
 
-**3. Enable migration to the project**
+**3. Remove migration**
    - *remove-migration*
