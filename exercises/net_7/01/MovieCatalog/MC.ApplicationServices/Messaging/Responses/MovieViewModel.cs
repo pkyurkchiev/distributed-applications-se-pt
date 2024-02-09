@@ -1,6 +1,6 @@
 ﻿namespace MC.ApplicationServices.Messaging.Responses
 {
-    public class MovieModel
+    public class MovieViewModel
     {
         required public string Title { get; set;}
         public string? Description { get; set;}

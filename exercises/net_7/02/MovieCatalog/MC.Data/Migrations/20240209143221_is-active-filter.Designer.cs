@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace MC.WebApiServices.Migrations
+namespace MC.Data.Migrations
 {
     [DbContext(typeof(MoviesDbContext))]
-    [Migration("20240208143036_Intial")]
-    partial class Intial
+    [Migration("20240209143221_is-active-filter")]
+    partial class isactivefilter
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,6 +35,9 @@ namespace MC.WebApiServices.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("ReleaseDate")
                         .HasColumnType("datetime2");

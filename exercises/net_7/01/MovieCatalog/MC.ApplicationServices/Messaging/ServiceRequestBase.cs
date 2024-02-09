@@ -1,6 +1,6 @@
 ﻿namespace MC.ApplicationServices.Messaging
 {
-    public abstract class RequestServiceBase
+    public abstract class ServiceRequestBase
     {
     }
 }

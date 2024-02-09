@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace MC.WebApiServices.Migrations
+namespace MC.Data.Migrations
 {
     [DbContext(typeof(MoviesDbContext))]
     partial class MoviesDbContextModelSnapshot : ModelSnapshot
@@ -32,6 +32,9 @@ namespace MC.WebApiServices.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("ReleaseDate")
                         .HasColumnType("datetime2");

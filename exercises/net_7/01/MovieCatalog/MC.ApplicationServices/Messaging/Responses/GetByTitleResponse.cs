@@ -1,7 +1,7 @@
 ﻿namespace MC.ApplicationServices.Messaging.Responses
 {
-    public class GetByTitleResponse : ResponseServiceBase
+    public class GetByTitleResponse : ServiceResponseBase
     {
-        public MovieModel Movie { get; set; }
+        public MovieViewModel Movie { get; set; }
     }
 }

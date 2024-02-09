@@ -1,10 +1,10 @@
 ﻿namespace MC.ApplicationServices.Messaging
 {
-    public abstract class ResponseServiceBase
+    public abstract class ServiceResponseBase
     {
         public BusinessStatusCodeEnum StatusCode { get; set; }
 
-        public ResponseServiceBase()
+        public ServiceResponseBase()
         {
             StatusCode = BusinessStatusCodeEnum.None;
         }
