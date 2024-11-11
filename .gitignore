@@ -396,3 +396,7 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+GustoHub.API/GustoHub.API/appsettings.Development.json
+GustoHub.API/GustoHub.API.sln
+GustoHub.API/GustoHub.API/appsettings.json
+GustoHub.API/GustoHub.API/Properties/launchSettings.json
