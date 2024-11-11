@@ -1,5 +1,6 @@
 ﻿namespace GustoHub.Data
 {
+    using GustoHub.Data.Models;
     using Microsoft.EntityFrameworkCore;
 
     public class GustoHubDbContext : DbContext
@@ -14,8 +15,12 @@
         {           
         }
 
-        //TODO:
-        //Add DbSet...
+        public virtual DbSet<Category> Categories { get; set; } = null!;
+        public virtual DbSet<Customer> Customers { get; set; } = null!;
+        public virtual DbSet<Dish> Dishes { get; set; } = null!;
+        public virtual DbSet<Employee> Employees { get; set; } = null!;
+        public virtual DbSet<Order> Orders { get; set; } = null!;
+        public virtual DbSet<OrderDish> OrderDishes { get; set; } = null!;
 
         /*
          * The OnModelCreating method is overridden to configure the model and relationships using Fluent API.
