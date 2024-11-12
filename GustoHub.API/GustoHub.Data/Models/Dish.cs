@@ -1,6 +1,7 @@
 ﻿namespace GustoHub.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Dish
     {
@@ -15,6 +16,7 @@
 
         public int CategoryId { get; set; }
 
+        [ForeignKey(nameof(CategoryId))]
         public virtual Category Category { get; set; } = null!;
 
         public ICollection<OrderDish> OrderDishes { get; set; } = new List<OrderDish>();
