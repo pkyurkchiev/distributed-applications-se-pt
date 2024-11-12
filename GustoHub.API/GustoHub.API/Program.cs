@@ -2,6 +2,7 @@
 namespace GustoHub.API
 {
     using GustoHub.Data;
+    using GustoHub.API.Extensions;
     using Microsoft.EntityFrameworkCore;
 
     public class Program
@@ -19,6 +20,8 @@ namespace GustoHub.API
 
             builder.Services.AddDbContext<GustoHubDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
+            builder.Services.AddApplicationServices();
 
             var app = builder.Build();
 
