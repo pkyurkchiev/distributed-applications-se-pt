@@ -1,16 +1,24 @@
 
 namespace GustoHub.API
 {
+    using GustoHub.Data;
+    using Microsoft.EntityFrameworkCore;
+
     public class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
-
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            var connectionString = builder.Configuration.GetConnectionString("GustoHubDbContextConnection")
+               ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+            builder.Services.AddDbContext<GustoHubDbContext>(options =>
+                options.UseSqlServer(connectionString));
 
             var app = builder.Build();
 
