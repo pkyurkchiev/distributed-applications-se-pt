@@ -402,3 +402,4 @@ GustoHub.API/GustoHub.API/appsettings.json
 GustoHub.API/GustoHub.API/Properties/launchSettings.json
 GustoHub.API/GustoHub.Data/Migrations/20241112183552_Initialize.Designer.cs
 GustoHub.API/GustoHub.Data/Migrations/GustoHubDbContextModelSnapshot.cs
+
