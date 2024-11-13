@@ -32,13 +32,14 @@
         {
             await DbSet<T>().AddAsync(entity);
         }
-        public void Remove<T>(T entity) where T : class
+        public async Task RemoveAsync<T>(object id) where T : class
         {
-            DbSet<T>().Remove(entity);
-        }
-        public void RemoveRange<T>(IEnumerable<T> entities) where T : class
-        {
-            DbSet<T>().RemoveRange(entities);
+            T? entity = await GetByIdAsync<T>(id);
+
+            if (entity != null)
+            {
+                DbSet<T>().Remove(entity);
+            }
         }
 
         public async Task<int> SaveChangesAsync()
