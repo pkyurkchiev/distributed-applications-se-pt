@@ -1,9 +1,6 @@
 
 namespace GustoHub.API
 {
-    using GustoHub.Data;
-    using GustoHub.API.Extensions;
-    using Microsoft.EntityFrameworkCore;
     using GustoHub.API.Extensions;
 
     public class Program
