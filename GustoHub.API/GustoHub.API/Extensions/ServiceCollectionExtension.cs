@@ -16,6 +16,7 @@ namespace GustoHub.API.Extensions
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IDishService, DishService>();
+            services.AddScoped<IOrderDishService, OrderDishService>();
 
             return services;
         }

@@ -1,7 +1,6 @@
 ﻿namespace GustoHub.Services.Interfaces
 {
     using GustoHub.Data.Models;
-    using Microsoft.EntityFrameworkCore;
 
     public interface IOrderDishService
     {
