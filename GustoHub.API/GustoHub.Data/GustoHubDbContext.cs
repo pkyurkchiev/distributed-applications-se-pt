@@ -1,5 +1,6 @@
 ﻿namespace GustoHub.Data
 {
+    using System.Reflection;
     using GustoHub.Data.Models;
     using Microsoft.EntityFrameworkCore;
 
@@ -29,6 +30,11 @@
          */
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            Assembly configAssembly = Assembly.GetAssembly(typeof(GustoHubDbContext))
+                ?? Assembly.GetExecutingAssembly();
+
+            modelBuilder.ApplyConfigurationsFromAssembly(configAssembly);
+
             base.OnModelCreating(modelBuilder);
         }
     }

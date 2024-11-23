@@ -1,6 +1,7 @@
 ﻿namespace GustoHub.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Order
     {
@@ -13,12 +14,14 @@
 
         public decimal TotalAmount { get; set; }
 
-        public int CustomerId { get; set; }
+        public Guid CustomerId { get; set; }
 
+        [ForeignKey(nameof(CustomerId))]
         public virtual Customer Customer { get; set; } = null!;
 
-        public int EmployeeId { get; set; }
+        public Guid EmployeeId { get; set; }
 
+        [ForeignKey(nameof(EmployeeId))]
         public virtual Employee Employee { get; set; } = null!;
 
         public ICollection<OrderDish> OrderDishes { get; set; } = new List<OrderDish>();
