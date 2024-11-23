@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34714.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GustoHub.API", "GustoHub.API\GustoHub.API.csproj", "{77126E8A-EA06-4FC0-9B3E-BBDE63E8753B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GustoHub.Data", "GustoHub.Data\GustoHub.Data.csproj", "{419E726E-2667-47A3-AC3A-6B8CF37663FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GustoHub.Services", "GustoHub.Services\GustoHub.Services.csproj", "{0A5188B2-CAB2-4C28-AC98-7D59DD9BC08E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77126E8A-EA06-4FC0-9B3E-BBDE63E8753B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77126E8A-EA06-4FC0-9B3E-BBDE63E8753B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77126E8A-EA06-4FC0-9B3E-BBDE63E8753B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77126E8A-EA06-4FC0-9B3E-BBDE63E8753B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{419E726E-2667-47A3-AC3A-6B8CF37663FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{419E726E-2667-47A3-AC3A-6B8CF37663FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{419E726E-2667-47A3-AC3A-6B8CF37663FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{419E726E-2667-47A3-AC3A-6B8CF37663FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A5188B2-CAB2-4C28-AC98-7D59DD9BC08E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A5188B2-CAB2-4C28-AC98-7D59DD9BC08E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A5188B2-CAB2-4C28-AC98-7D59DD9BC08E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A5188B2-CAB2-4C28-AC98-7D59DD9BC08E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {84A8592D-50E2-4C62-A0EC-6E63776A3883}
+	EndGlobalSection
+EndGlobal
