@@ -1,7 +1,7 @@
 ﻿namespace GustoHub.Services.Services
 {
-    using GustoHub.Data.Common;
     using GustoHub.Data.Models;
+    using GustoHub.Data.Common;
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using GustoHub.Services.Interfaces;
