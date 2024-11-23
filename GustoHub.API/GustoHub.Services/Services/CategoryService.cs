@@ -1,11 +1,11 @@
 ﻿namespace GustoHub.Services.Services
 {
-    using GustoHub.Data.Common;
     using GustoHub.Data.Models;
+    using GustoHub.Data.Common;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
     using GustoHub.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
 
     public class CategoryService : ICategoryService
     {
@@ -31,7 +31,7 @@
 
         public async Task<IEnumerable<Category>> AllAsync()
         {
-            return repository.All<Category>();
+            return await repository.AllAsync<Category>();
         }
 
         public async Task<bool> ExistsByIdAsync(int categoryId)

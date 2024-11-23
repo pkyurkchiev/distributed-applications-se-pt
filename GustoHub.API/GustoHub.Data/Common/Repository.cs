@@ -18,9 +18,9 @@
             return dbContext.Set<T>();
         }
 
-        public IQueryable<T> All<T>() where T : class
+        public async Task<List<T>> AllAsync<T>() where T : class
         {
-            return DbSet<T>();
+            return await DbSet<T>().ToListAsync();
         }
 
         public IQueryable<T> AllAsReadOnly<T>() where T : class

@@ -2,8 +2,8 @@ namespace GustoHub.API.Extensions
 {
     using GustoHub.Data;
     using GustoHub.Data.Common;
-    using GustoHub.Services.Interfaces;
     using GustoHub.Services.Services;
+    using GustoHub.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
  
 
@@ -12,6 +12,11 @@ namespace GustoHub.API.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IDishService, DishService>();
+            services.AddScoped<IOrderDishService, OrderDishService>();
 
             return services;
         }
