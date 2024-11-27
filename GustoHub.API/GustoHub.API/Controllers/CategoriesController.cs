@@ -1,9 +1,8 @@
 ﻿namespace GustoHub.API.Controllers
 {
     using GustoHub.Data.Models;
-    using GustoHub.Services.Interfaces;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using GustoHub.Services.Interfaces;
 
     [Route("api/[controller]")]
     [ApiController]

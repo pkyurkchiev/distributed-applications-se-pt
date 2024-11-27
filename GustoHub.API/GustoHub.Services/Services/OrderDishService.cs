@@ -15,7 +15,7 @@
         {
             this.repository = repository;
         }
-        public async Task AddDishToOrder(int orderId, int dishId, int quantity)
+        public async Task<string> AddDishToOrder(int orderId, int dishId, int quantity)
         {
             Order order = await repository.GetByIdAsync<Order>(orderId);
 
@@ -30,7 +30,11 @@
 
                 await repository.AddAsync(orderDish);
                 await repository.SaveChangesAsync();
-            }  
+
+                return "Dish added successfully to Order!";
+            }
+
+            return "Order doesn't exist!";
         }
 
         public async Task<IEnumerable<Dish>> GetDishesForOrder(int orderId)
