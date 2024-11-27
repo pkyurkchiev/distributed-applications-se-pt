@@ -6,6 +6,7 @@
     using System.Collections.Generic;
     using GustoHub.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
+    using GustoHub.Data.ViewModels;
 
     public class CategoryService : ICategoryService
     {
@@ -16,17 +17,17 @@
             this.repository = repository;
         }
 
-        public async Task<string> AddAsync(Category category)
+        public async Task<string> AddAsync(POSTCategoryDto categoryDto)
         {
-            if (!await ExistsByIdAsync(category.Id))
+            Category category = new Category() 
             {
-                await repository.AddAsync(category);
-                await repository.SaveChangesAsync();
+                Name = categoryDto.Name,
+            };
 
-                return "Category added Successfully!";
-            }
+            await repository.AddAsync(category);
+            await repository.SaveChangesAsync();
 
-            return "Category already exists!";
+            return "Category added Successfully!";
         }
 
         public async Task<IEnumerable<Category>> AllAsync()

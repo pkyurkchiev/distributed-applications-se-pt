@@ -2,6 +2,7 @@
 {
     using GustoHub.Data.Common;
     using GustoHub.Data.Models;
+    using GustoHub.Data.ViewModels;
     using GustoHub.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
 
@@ -14,17 +15,19 @@
             this.repository = repository;
         }
 
-        public async Task<string> AddAsync(Dish dish)
+        public async Task<string> AddAsync(POSTDishDto dishDto)
         {
-            if (!await ExistsByIdAsync(dish.Id))
+            Dish dish = new Dish()
             {
-                await repository.AddAsync(dish);
-                await repository.SaveChangesAsync();
+                Name = dishDto.Name,
+                CategoryId = dishDto.CategoryId,
+                Price = dishDto.Price,
+            };
 
-                return "Dish added Successfully!";
-            }
+            await repository.AddAsync(dish);
+            await repository.SaveChangesAsync();
 
-            return "Dish already exists!";
+            return "Dish added Successfully!";
         }
 
         public async Task<IEnumerable<Dish>> AllAsync()

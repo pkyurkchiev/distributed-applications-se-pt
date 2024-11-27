@@ -18,7 +18,7 @@ namespace GustoHub.API.Controllers
             this.orderDishService = orderDishService;
         }
 
-        [HttpPost("{orderId}/{dishId}")]
+        [HttpPost]
         public async Task<IActionResult> PostDishOrder
             ([FromQuery] int orderId,
             [FromQuery] int dishId,

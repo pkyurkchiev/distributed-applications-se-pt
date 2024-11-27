@@ -7,6 +7,8 @@
     using System.Collections.Generic;
     using GustoHub.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
+    using GustoHub.Data.ViewModels;
+    using System.Globalization;
 
     public class EmployeeService : IEmployeeService
     {
@@ -16,17 +18,20 @@
         {
             this.repository = repository;
         }
-        public async Task<string> AddAsync(Employee employee)
+        public async Task<string> AddAsync(POSTEmployeeDto employeeDto)
         {
-            if (!await ExistsByIdAsync(employee.Id))
+            Employee employee = new Employee()
             {
-                await repository.AddAsync(employee);
-                await repository.SaveChangesAsync();
+                Name = employeeDto.Name,
+                Title = employeeDto.Title,
+                HireDate = DateTime.ParseExact(employeeDto.HireDate, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture),
+                IsActive = true,
+            };
 
-                return "Employee added Successfully!";
-            }
+            await repository.AddAsync(employee);
+            await repository.SaveChangesAsync();
 
-            return "Employee already exists!";
+            return "Employee added Successfully!";
         }
 
         public async Task<IEnumerable<Employee>> AllAsync()

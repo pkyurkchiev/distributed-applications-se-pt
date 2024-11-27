@@ -6,6 +6,8 @@
     using System.Collections.Generic;
     using GustoHub.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
+    using GustoHub.Data.ViewModels;
+    using System.Globalization;
 
     public class OrderService : IOrderService
     {
@@ -16,17 +18,23 @@
             this.repository = repository;
         }
 
-        public async Task<string> AddAsync(Order order)
+        public async Task<string> AddAsync(POSTOrderDto orderDto)
         {
-            if (!await ExistsByIdAsync(order.Id))
+            Order order = new Order() 
             {
-                await repository.AddAsync(order);
-                await repository.SaveChangesAsync();
+                OrderDate = DateTime.ParseExact(orderDto.OrderDate, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture),
+                CompletionDate = string.IsNullOrWhiteSpace(orderDto.CompletionDate)
+                     ? (DateTime?)null
+                     : DateTime.ParseExact(orderDto.CompletionDate, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture),
+                TotalAmount = orderDto.TotalAmount,
+                CustomerId = Guid.Parse(orderDto.CustomerId),
+                EmployeeId = Guid.Parse(orderDto.EmployeeId)
+            };
 
-                return "Order added Successfully!";
-            }
+            await repository.AddAsync(order);
+            await repository.SaveChangesAsync();
 
-            return "Order already exists!";
+            return "Order added Successfully!";
         }
 
         public async Task<IEnumerable<Order>> AllAsync()

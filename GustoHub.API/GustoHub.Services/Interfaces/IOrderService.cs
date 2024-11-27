@@ -1,10 +1,11 @@
 ﻿namespace GustoHub.Services.Interfaces
 {
     using GustoHub.Data.Models;
+    using GustoHub.Data.ViewModels;
 
     public interface IOrderService
     {
-        Task<string> AddAsync(Order order);
+        Task<string> AddAsync(POSTOrderDto orderDto);
         Task<bool> ExistsByIdAsync(int orderId);
         Task<Order> GetByIdAsync(int orderId);
         Task<Order> GetByDateAsync(DateTime date);

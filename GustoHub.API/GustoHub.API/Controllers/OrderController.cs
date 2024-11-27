@@ -3,22 +3,39 @@
     using GustoHub.Data.Models;
     using Microsoft.AspNetCore.Mvc;
     using GustoHub.Services.Interfaces;
+    using GustoHub.Data.ViewModels;
 
     [Route("api/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
     {
         private readonly IOrderService orderService;
+        private readonly IEmployeeService employeeService;
+        private readonly ICustomerService customerService;
 
-        public OrderController(IOrderService orderService)
+        public OrderController(
+            IOrderService orderService,
+            IEmployeeService employeeService,
+            ICustomerService customerService)
         {
             this.orderService = orderService;
+            this.employeeService = employeeService;
+            this.customerService = customerService;
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostOrder([FromBody] Order order)
+        public async Task<IActionResult> PostOrder([FromBody] POSTOrderDto orderDto)
         {
-            string responseMessage = await orderService.AddAsync(order);
+            if (!await employeeService.ExistsByIdAsync(Guid.Parse(orderDto.EmployeeId)))
+            {
+                return NotFound("Employee not found!");
+            }
+            if (!await customerService.ExistsByIdAsync(Guid.Parse(orderDto.CustomerId)))
+            {
+                return NotFound("Customer not found!");
+            }
+
+            string responseMessage = await orderService.AddAsync(orderDto);
             return Ok(responseMessage);
         }
         [HttpGet("all")]

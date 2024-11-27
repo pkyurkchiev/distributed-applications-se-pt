@@ -7,6 +7,7 @@
     using System.Collections.Generic;
     using GustoHub.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
+    using GustoHub.Data.ViewModels;
 
     public class CustomerService : ICustomerService
     {
@@ -16,17 +17,19 @@
         {
             this.repository = repository;
         }
-        public async Task<string> AddAsync(Customer customer)
+        public async Task<string> AddAsync(POSTCustomerDto customerDto)
         {
-            if (!await ExistsByIdAsync(customer.Id))
+            Customer customer = new Customer()
             {
-                await repository.AddAsync(customer);
-                await repository.SaveChangesAsync();
+                Name = customerDto.Name,
+                Email = customerDto.Email,
+                Phone = customerDto.Phone,
+            };
 
-                return "Customer added Successfully!";
-            }
+            await repository.AddAsync(customer);
+            await repository.SaveChangesAsync();
 
-            return "Customer already exists!";
+            return "Customer added Successfully!";
         }
 
         public async Task<IEnumerable<Customer>> AllAsync()

@@ -1,12 +1,9 @@
-﻿namespace GustoHub.Data.Models
+﻿namespace GustoHub.Data.ViewModels
 {
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Dish
+    public class POSTDishDto
     {
-        public int Id { get; set; }
-
         [Required]
         [MaxLength(100)]
         public string Name { get; set; } = string.Empty!;
@@ -16,10 +13,5 @@
         public decimal Price { get; set; }
 
         public int CategoryId { get; set; }
-
-        [ForeignKey(nameof(CategoryId))]
-        public virtual Category Category { get; set; } = null!;
-
-        public ICollection<OrderDish> OrderDishes { get; set; } = new List<OrderDish>();
     }
 }

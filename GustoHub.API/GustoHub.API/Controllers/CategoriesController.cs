@@ -3,6 +3,7 @@
     using GustoHub.Data.Models;
     using Microsoft.AspNetCore.Mvc;
     using GustoHub.Services.Interfaces;
+    using GustoHub.Data.ViewModels;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -16,9 +17,9 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostCategory([FromBody] Category category)
+        public async Task<IActionResult> PostCategory([FromBody] POSTCategoryDto categoryDto)
         {
-            string responseMessage = await categoryService.AddAsync(category);
+            string responseMessage = await categoryService.AddAsync(categoryDto);
             return Ok(responseMessage);
         }
         [HttpGet("all")]

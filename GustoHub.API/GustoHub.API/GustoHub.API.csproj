@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GustoHub.Data.ViewModels\GustoHub.Data.ViewModels.csproj" />
     <ProjectReference Include="..\GustoHub.Data\GustoHub.Data.csproj" />
     <ProjectReference Include="..\GustoHub.Services\GustoHub.Services.csproj" />
   </ItemGroup>
