@@ -40,6 +40,7 @@
             List<GETEmployeeDto> employeeDtos = await repository.AllAsReadOnly<Employee>()
                 .Select(e => new GETEmployeeDto()
                 {
+                    Id = e.Id.ToString(),
                     Name = e.Name,
                     Title = e.Title,
                     HireDate = e.HireDate.ToShortDateString(),
@@ -61,6 +62,7 @@
 
             GETEmployeeDto employeeDto = new GETEmployeeDto()
             {
+                Id = employee.Id.ToString(),
                 Name = employee.Name,
                 Title = employee.Title,
                 HireDate = employee.HireDate.ToShortDateString(),
@@ -76,6 +78,7 @@
 
             GETEmployeeDto employeeDto = new GETEmployeeDto()
             {
+                Id = employee.Id.ToString(),
                 Name = employee.Name,
                 Title = employee.Title,
                 HireDate = employee.HireDate.ToShortDateString(),
