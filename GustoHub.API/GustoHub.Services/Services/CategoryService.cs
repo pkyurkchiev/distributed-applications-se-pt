@@ -8,7 +8,7 @@
     using Microsoft.EntityFrameworkCore;
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.GET;
-
+    using GustoHub.Data.ViewModels.PUT;
 
     public class CategoryService : ICategoryService
     {
@@ -94,7 +94,6 @@
 
         public async Task<GETCategoryDto?> GetByNameAsync(string categoryName)
         {
-            //fix name here Include
             List<Dish> dishes = await repository.AllAsReadOnly<Dish>()
                 .Include(d => d.Category)
                 .ToListAsync();
@@ -129,6 +128,18 @@
                 return "Category removed successfully!";
             }
             return "Category doesn't exists!";
+        }
+
+        public async Task<string> UpdateAsync(PUTCategoryDto categoryDto, int categoryId)
+        {
+            Category? category = await repository.AllAsReadOnly<Category>()
+                .FirstOrDefaultAsync(c => c.Id == categoryId);
+
+            category.Name = categoryDto.Name;
+
+            await repository.SaveChangesAsync();
+
+            return "Category updated Successfully!";
         }
     }
 }

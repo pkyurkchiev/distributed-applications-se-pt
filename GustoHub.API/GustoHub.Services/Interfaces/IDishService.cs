@@ -3,6 +3,7 @@
     using GustoHub.Data.Models;
     using GustoHub.Data.ViewModels.GET;
     using GustoHub.Data.ViewModels.POST;
+    using GustoHub.Data.ViewModels.PUT;
 
     public interface IDishService
     {
@@ -12,5 +13,6 @@
         Task<GETDishDto> GetByNameAsync(string dishName);
         Task<IEnumerable<GETDishDto>> AllAsync();
         Task<string> Remove(int id);
+        Task<string> UpdateAsync(PUTDishDto dish, int dishId);
     }
 }

@@ -3,6 +3,7 @@
     using GustoHub.Data.Models;
     using GustoHub.Data.ViewModels.GET;
     using GustoHub.Data.ViewModels.POST;
+    using GustoHub.Data.ViewModels.PUT;
 
     public interface IEmployeeService
     {
@@ -12,5 +13,6 @@
         Task<GETEmployeeDto> GetByNameAsync(string employeeName);
         Task<IEnumerable<GETEmployeeDto>> AllAsync();
         Task<string> Remove(Guid employeeId);
+        Task<string> UpdateAsync(PUTEmployeeDto employee, string employeeId);
     }
 }

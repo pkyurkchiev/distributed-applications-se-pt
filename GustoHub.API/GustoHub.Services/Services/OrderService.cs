@@ -9,7 +9,7 @@
     using System.Globalization;
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.GET;
-   
+    using GustoHub.Data.ViewModels.PUT;
 
     public class OrderService : IOrderService
     {
@@ -110,6 +110,26 @@
                 return "Order removed successfully!";
             }
             return "Order doesn't exists!";
+        }
+
+        public async Task<string> UpdateAsync(PUTOrderDto orderDto, int orderId)
+        {
+            Order? order = await repository.AllAsReadOnly<Order>()
+                .FirstOrDefaultAsync(o => o.Id == orderId);
+
+            order.CustomerId = order.CustomerId;
+            order.EmployeeId = order.EmployeeId;
+            order.OrderDate = DateTime.ParseExact
+                (orderDto.OrderDate, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
+            order.CompletionDate = string.IsNullOrWhiteSpace(orderDto.CompletionDate)
+                ? (DateTime?)null
+                : DateTime.ParseExact(
+                    orderDto.CompletionDate, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
+            order.TotalAmount = orderDto.TotalAmount;
+
+            await repository.SaveChangesAsync();
+
+            return "Order added Successfully!";
         }
     }
 }

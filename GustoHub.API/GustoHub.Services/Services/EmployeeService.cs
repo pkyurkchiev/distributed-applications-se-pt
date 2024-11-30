@@ -10,6 +10,7 @@
     using System.Globalization;
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.GET;
+    using GustoHub.Data.ViewModels.PUT;
 
     public class EmployeeService : IEmployeeService
     {
@@ -97,6 +98,20 @@
                 return "Employee removed successfully!";
             }
             return "Employee doesn't exists!";
+        }
+
+        public async Task<string> UpdateAsync(PUTEmployeeDto employeeDto, string employeeId)
+        {
+            Employee? employee = await repository.AllAsReadOnly<Employee>()
+                .FirstOrDefaultAsync(e => e.Id == Guid.Parse(employeeId));
+
+            employee.Name = employeeDto.Name;
+            employee.Title = employeeDto.Title;
+            employee.HireDate = employee.HireDate;
+
+            await repository.SaveChangesAsync();
+
+            return "Employee added Successfully!";
         }
     }
 }

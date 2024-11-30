@@ -4,7 +4,7 @@
     using GustoHub.Data.Models;
     using GustoHub.Data.ViewModels.GET;
     using GustoHub.Data.ViewModels.POST;
-
+    using GustoHub.Data.ViewModels.PUT;
     using GustoHub.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
 
@@ -88,6 +88,20 @@
                 return "Dish removed successfully!";
             }
             return "Dish doesn't exists!";
+        }
+
+        public async Task<string> UpdateAsync(PUTDishDto dishDto, int dishId)
+        {
+            Dish? dish  = await repository.AllAsReadOnly<Dish>()
+                .FirstOrDefaultAsync(d => d.Id == dishId);
+
+            dish.Name = dishDto.Name;
+            dish.Price = dishDto.Price;
+            dish.CategoryId = dishDto.CategoryId;
+
+            await repository.SaveChangesAsync();
+
+            return dish.Name;
         }
     }
 }

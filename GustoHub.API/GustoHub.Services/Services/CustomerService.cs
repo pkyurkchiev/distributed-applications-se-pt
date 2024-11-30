@@ -9,6 +9,7 @@
     using Microsoft.EntityFrameworkCore;
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.GET;
+    using GustoHub.Data.ViewModels.PUT;
 
     public class CustomerService : ICustomerService
     {
@@ -92,6 +93,20 @@
                 return "Customer removed successfully!";
             }
             return "Customer doesn't exists!";
+        }
+
+        public async Task<string> UpdateAsync(PUTCustomerDto customerDto, string customerId)
+        {
+            Customer? customer = await repository.AllAsReadOnly<Customer>()
+                .FirstOrDefaultAsync(c => c.Id == Guid.Parse(customerId));
+
+            customer.Name = customerDto.Name;
+            customer.Phone = customerDto.Phone;
+            customer.Email = customerDto.Email;
+
+            await repository.SaveChangesAsync();
+
+            return "Customer updated Successfully!";
         }
     }
 }
