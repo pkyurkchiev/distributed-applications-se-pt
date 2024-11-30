@@ -3,7 +3,7 @@
     using GustoHub.Data.Models;
     using Microsoft.AspNetCore.Mvc;
     using GustoHub.Services.Interfaces;
-    using GustoHub.Data.ViewModels;
+    using GustoHub.Data.ViewModels.POST;
 
     [Route("api/[controller]")]
     [ApiController]

@@ -1,15 +1,16 @@
 ﻿namespace GustoHub.Services.Interfaces
 {
     using GustoHub.Data.Models;
-    using GustoHub.Data.ViewModels;
+    using GustoHub.Data.ViewModels.GET;
+    using GustoHub.Data.ViewModels.POST;
 
     public interface ICustomerService
     {
         Task<string> AddAsync(POSTCustomerDto customer);
         Task<bool> ExistsByIdAsync(Guid customerId);
-        Task<Customer> GetByIdAsync(Guid customerId);
-        Task<Customer> GetByNameAsync(string customerName);
-        Task<IEnumerable<Customer>> AllAsync();
+        Task<GETCustomerDto> GetByIdAsync(Guid customerId);
+        Task<GETCustomerDto> GetByNameAsync(string customerName);
+        Task<IEnumerable<GETCustomerDto>> AllAsync();
         Task<string> Remove(Guid customerId);
     }
 }

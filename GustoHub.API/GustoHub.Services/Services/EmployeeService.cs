@@ -7,8 +7,9 @@
     using System.Collections.Generic;
     using GustoHub.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
-    using GustoHub.Data.ViewModels;
     using System.Globalization;
+    using GustoHub.Data.ViewModels.POST;
+    using GustoHub.Data.ViewModels.GET;
 
     public class EmployeeService : IEmployeeService
     {
@@ -34,9 +35,19 @@
             return "Employee added Successfully!";
         }
 
-        public async Task<IEnumerable<Employee>> AllAsync()
+        public async Task<IEnumerable<GETEmployeeDto>> AllAsync()
         {
-            return await repository.AllAsync<Employee>();
+            List<GETEmployeeDto> employeeDtos = await repository.AllAsReadOnly<Employee>()
+                .Select(e => new GETEmployeeDto()
+                {
+                    Name = e.Name,
+                    Title = e.Title,
+                    HireDate = e.HireDate.ToShortDateString(),
+                    IsActive = true,
+                })
+                .ToListAsync();
+
+            return employeeDtos;
         }
 
         public async Task<bool> ExistsByIdAsync(Guid employeeId)
@@ -44,14 +55,34 @@
             return await repository.AllAsReadOnly<Employee>().AnyAsync(e => e.Id == employeeId);
         }
 
-        public async Task<Employee> GetByIdAsync(Guid employeeId)
+        public async Task<GETEmployeeDto> GetByIdAsync(Guid employeeId)
         {
-            return await repository.AllAsReadOnly<Employee>().FirstOrDefaultAsync(e => e.Id == employeeId);
+            Employee employee = await repository.AllAsReadOnly<Employee>().FirstOrDefaultAsync(e => e.Id == employeeId);
+
+            GETEmployeeDto employeeDto = new GETEmployeeDto()
+            {
+                Name = employee.Name,
+                Title = employee.Title,
+                HireDate = employee.HireDate.ToShortDateString(),
+                IsActive = true,
+            };
+
+            return employeeDto;
         }
 
-        public async Task<Employee> GetByNameAsync(string employeeName)
+        public async Task<GETEmployeeDto> GetByNameAsync(string employeeName)
         {
-            return await repository.AllAsReadOnly<Employee>().FirstOrDefaultAsync(e => e.Name == employeeName);
+            Employee employee = await repository.AllAsReadOnly<Employee>().FirstOrDefaultAsync(e => e.Name == employeeName);
+
+            GETEmployeeDto employeeDto = new GETEmployeeDto()
+            {
+                Name = employee.Name,
+                Title = employee.Title,
+                HireDate = employee.HireDate.ToShortDateString(),
+                IsActive = true,
+            };
+
+            return employeeDto;
         }
 
         public async Task<string> Remove(Guid employeeId)

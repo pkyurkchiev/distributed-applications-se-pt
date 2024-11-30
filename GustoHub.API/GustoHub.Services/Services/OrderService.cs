@@ -6,8 +6,10 @@
     using System.Collections.Generic;
     using GustoHub.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
-    using GustoHub.Data.ViewModels;
     using System.Globalization;
+    using GustoHub.Data.ViewModels.POST;
+    using GustoHub.Data.ViewModels.GET;
+   
 
     public class OrderService : IOrderService
     {
@@ -37,9 +39,23 @@
             return "Order added Successfully!";
         }
 
-        public async Task<IEnumerable<Order>> AllAsync()
+        public async Task<IEnumerable<GETOrdersDto>> AllAsync()
         {
-            return await repository.AllAsync<Order>();
+            List<GETOrdersDto> orderDtos = await repository.AllAsReadOnly<Order>()
+                .Select(o => new GETOrdersDto()
+                {
+                    Id = o.Id.ToString(),
+                    EmployeeId = o.EmployeeId.ToString(),
+                    CustomerId = o.CustomerId.ToString(),
+                    CompletionDate = o.CompletionDate.HasValue
+                     ? o.OrderDate.ToString("f")
+                     : null,
+                    OrderDate = o.OrderDate.ToShortDateString(),
+                    TotalAmount = o.TotalAmount.ToString("F2")
+                })
+                .ToListAsync();
+
+            return orderDtos;
         }
 
         public async Task<bool> ExistsByIdAsync(int orderId)
@@ -47,14 +63,42 @@
             return await repository.AllAsReadOnly<Order>().AnyAsync(o => o.Id == orderId);
         }
 
-        public async Task<Order> GetByIdAsync(int orderId)
+        public async Task<GETOrdersDto> GetByIdAsync(int orderId)
         {
-            return await repository.AllAsReadOnly<Order>().FirstOrDefaultAsync(o => o.Id == orderId);
+            Order order = await repository.AllAsReadOnly<Order>().FirstOrDefaultAsync(o => o.Id == orderId);
+
+            GETOrdersDto orderDto = new GETOrdersDto()
+            {
+                Id = order.Id.ToString(),
+                EmployeeId = order.EmployeeId.ToString(),
+                CustomerId = order.CustomerId.ToString(),
+                CompletionDate = order.CompletionDate.HasValue
+                     ? order.OrderDate.ToString("f")
+                     : null,
+                OrderDate = order.OrderDate.ToShortDateString(),
+                TotalAmount = order.TotalAmount.ToString("F2")
+            };
+
+            return orderDto;
         }
 
-        public async Task<Order> GetByDateAsync(DateTime date)
+        public async Task<GETOrdersDto> GetByDateAsync(DateTime date)
         {
-            return await repository.AllAsReadOnly<Order>().FirstOrDefaultAsync(o => o.OrderDate == date);
+            Order order = await repository.AllAsReadOnly<Order>().FirstOrDefaultAsync(o => o.OrderDate == date);
+
+            GETOrdersDto orderDto = new GETOrdersDto()
+            {
+                Id = order.Id.ToString(),
+                EmployeeId = order.EmployeeId.ToString(),
+                CustomerId = order.CustomerId.ToString(),
+                CompletionDate = order.CompletionDate.HasValue
+                     ? order.OrderDate.ToString("f")
+                     : null,
+                OrderDate = order.OrderDate.ToShortDateString(),
+                TotalAmount = order.TotalAmount.ToString("F2")
+            };
+
+            return orderDto;
         }
 
         public async Task<string> Remove(int id)

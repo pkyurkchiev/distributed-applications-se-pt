@@ -3,22 +3,30 @@
     using GustoHub.Data.Models;
     using Microsoft.AspNetCore.Mvc;
     using GustoHub.Services.Interfaces;
-    using GustoHub.Data.ViewModels;
+    using GustoHub.Data.ViewModels.POST;
 
     [Route("api/[controller]")]
     [ApiController]
     public class DishController : ControllerBase
     {
         private readonly IDishService dishService;
+        private readonly ICategoryService categoryService;
 
-        public DishController(IDishService dishService)
+        public DishController(
+            IDishService dishService,
+            ICategoryService categoryService)
         {
             this.dishService = dishService;
+            this.categoryService = categoryService;
         }
 
         [HttpPost]
         public async Task<IActionResult> PostDish([FromBody] POSTDishDto dishDto)
         {
+            if (!await categoryService.ExistsByIdAsync(dishDto.CategoryId))
+            {
+                return NotFound("Category not found!");
+            }
             string responseMessage = await dishService.AddAsync(dishDto);
             return Ok(responseMessage);
         }

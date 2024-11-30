@@ -6,7 +6,9 @@
     using System.Collections.Generic;
     using GustoHub.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
-    using GustoHub.Data.ViewModels;
+    using GustoHub.Data.ViewModels.POST;
+    using GustoHub.Data.ViewModels.GET;
+
 
     public class CategoryService : ICategoryService
     {
@@ -30,9 +32,34 @@
             return "Category added Successfully!";
         }
 
-        public async Task<IEnumerable<Category>> AllAsync()
+        public async Task<IEnumerable<GETCategoryDto>> AllAsync()
         {
-            return await repository.AllAsync<Category>();
+            List<GETCategoryDto> categoryDtos = new List<GETCategoryDto>();
+
+            List<Dish> dishes = await repository.AllAsync<Dish>();
+
+            foreach (var category in await repository.AllAsync<Category>())
+            {
+                List<GETDishDto> dishDtos = dishes
+                    .Where(d => d.CategoryId == category.Id) 
+                    .Select(d => new GETDishDto
+                    {
+                        Name = d.Name,
+                        Price = d.Price.ToString("F2"), 
+                        CategoryId = d.CategoryId
+                    })
+                    .ToList();
+
+                GETCategoryDto categoryDto = new GETCategoryDto
+                {
+                    Name = category.Name,
+                    DishDtos = dishDtos 
+                };
+
+                categoryDtos.Add(categoryDto);
+            }
+
+            return categoryDtos;
         }
 
         public async Task<bool> ExistsByIdAsync(int categoryId)
@@ -40,14 +67,57 @@
             return await repository.AllAsReadOnly<Category>().AnyAsync(c => c.Id == categoryId);
         }
 
-        public async Task<Category> GetByIdAsync(int categoryId)
+        public async Task<GETCategoryDto?> GetByIdAsync(int categoryId)
         {
-            return await repository.AllAsReadOnly<Category>().FirstOrDefaultAsync(c => c.Id == categoryId);
+            List<Dish> dishes = await repository.AllAsync<Dish>();
+
+            List<GETDishDto> dishDtos = dishes
+                .Where(d => d.CategoryId == categoryId)
+                .Select(d => new GETDishDto
+                {
+                    Name = d.Name,
+                    CategoryId = d.CategoryId,
+                    Price = d.Price.ToString("F2")
+                })
+                .ToList();
+
+            Category? category = await repository.AllAsReadOnly<Category>().FirstOrDefaultAsync(c => c.Id == categoryId);
+
+            GETCategoryDto? categoryDto = new GETCategoryDto() 
+            {
+                Name = category.Name,
+                DishDtos = dishDtos
+            };
+
+            return categoryDto;
         }
 
-        public async Task<Category> GetByNameAsync(string categoryName)
+        public async Task<GETCategoryDto?> GetByNameAsync(string categoryName)
         {
-            return await repository.AllAsReadOnly<Category>().FirstOrDefaultAsync(c => c.Name == categoryName);
+            //fix name here Include
+            List<Dish> dishes = await repository.AllAsReadOnly<Dish>()
+                .Include(d => d.Category)
+                .ToListAsync();
+
+            List<GETDishDto>? dishDtos = dishes
+                .Where(d => d.Category.Name == categoryName)
+                .Select(d => new GETDishDto
+                {
+                    Name = d.Name,
+                    CategoryId = d.CategoryId,
+                    Price = d.Price.ToString("F2")
+                })
+                .ToList();
+
+            Category? category = await repository.AllAsReadOnly<Category>().FirstOrDefaultAsync(c => c.Name == categoryName);
+
+            GETCategoryDto? categoryDto = new GETCategoryDto()
+            {
+                Name = category.Name,
+                DishDtos = dishDtos
+            };
+
+            return categoryDto;
         }
 
         public async Task<string> Remove(int id)

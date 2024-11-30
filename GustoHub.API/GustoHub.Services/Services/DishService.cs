@@ -2,7 +2,9 @@
 {
     using GustoHub.Data.Common;
     using GustoHub.Data.Models;
-    using GustoHub.Data.ViewModels;
+    using GustoHub.Data.ViewModels.GET;
+    using GustoHub.Data.ViewModels.POST;
+
     using GustoHub.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
 
@@ -30,9 +32,18 @@
             return "Dish added Successfully!";
         }
 
-        public async Task<IEnumerable<Dish>> AllAsync()
+        public async Task<IEnumerable<GETDishDto>> AllAsync()
         {
-            return await repository.AllAsync<Dish>();
+            List<GETDishDto> dishes = await repository.AllAsReadOnly<Dish>()
+                .Select(d => new GETDishDto()
+                {
+                    Name = d.Name,
+                    Price = d.Price.ToString("F2"),
+                    CategoryId = d.CategoryId,
+                })
+                .ToListAsync();
+
+            return dishes;
         }
 
         public async Task<bool> ExistsByIdAsync(int dishId)
@@ -40,14 +51,32 @@
             return await repository.AllAsReadOnly<Dish>().AnyAsync(d => d.Id == dishId);
         }
 
-        public async Task<Dish> GetByIdAsync(int dishId)
+        public async Task<GETDishDto> GetByIdAsync(int dishId)
         {
-            return await repository.AllAsReadOnly<Dish>().FirstOrDefaultAsync(d => d.Id == dishId);
+            Dish dish = await repository.AllAsReadOnly<Dish>().FirstOrDefaultAsync(d => d.Id == dishId);
+
+            GETDishDto dishDto = new GETDishDto()
+            {
+                Name = dish.Name,
+                Price = dish.Price.ToString("F2"),
+                CategoryId = dish.CategoryId,
+            };
+
+            return dishDto;
         }
 
-        public async Task<Dish> GetByNameAsync(string dishName)
+        public async Task<GETDishDto> GetByNameAsync(string dishName)
         {
-            return await repository.AllAsReadOnly<Dish>().FirstOrDefaultAsync(d => d.Name == dishName);
+            Dish dish = await repository.AllAsReadOnly<Dish>().FirstOrDefaultAsync(d => d.Name == dishName);
+
+            GETDishDto dishDto = new GETDishDto()
+            {
+                Name = dish.Name,
+                Price = dish.Price.ToString("F2"),
+                CategoryId = dish.CategoryId,
+            };
+
+            return dishDto;
         }
 
         public async Task<string> Remove(int id)

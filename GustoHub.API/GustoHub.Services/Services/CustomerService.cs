@@ -7,7 +7,8 @@
     using System.Collections.Generic;
     using GustoHub.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
-    using GustoHub.Data.ViewModels;
+    using GustoHub.Data.ViewModels.POST;
+    using GustoHub.Data.ViewModels.GET;
 
     public class CustomerService : ICustomerService
     {
@@ -32,9 +33,19 @@
             return "Customer added Successfully!";
         }
 
-        public async Task<IEnumerable<Customer>> AllAsync()
+        public async Task<IEnumerable<GETCustomerDto>> AllAsync()
         {
-            return await repository.AllAsync<Customer>();
+            List<GETCustomerDto> customerDtos = await repository.AllAsReadOnly<Customer>()
+                .Select(c => new GETCustomerDto()
+                {
+                    Id = c.Id.ToString(),
+                    Name = c.Name,
+                    Email = c.Email,
+                    Phone = c.Phone
+                })
+                .ToListAsync();
+                                  
+            return customerDtos;
         }
 
         public async Task<bool> ExistsByIdAsync(Guid customerId)
@@ -42,14 +53,34 @@
             return await repository.AllAsReadOnly<Customer>().AnyAsync(c => c.Id == customerId);
         }
 
-        public async Task<Customer> GetByIdAsync(Guid customerId)
+        public async Task<GETCustomerDto> GetByIdAsync(Guid customerId)
         {
-            return await repository.AllAsReadOnly<Customer>().FirstOrDefaultAsync(e => e.Id == customerId);
+            Customer customer = await repository.AllAsReadOnly<Customer>().FirstOrDefaultAsync(e => e.Id == customerId);
+
+            GETCustomerDto customerDto = new GETCustomerDto()
+            {
+                Id = customer.Id.ToString(),
+                Name = customer.Name,
+                Phone = customer.Phone,
+                Email = customer.Email
+            };
+
+            return customerDto;
         }
 
-        public async Task<Customer> GetByNameAsync(string customerName)
+        public async Task<GETCustomerDto> GetByNameAsync(string customerName)
         {
-            return await repository.AllAsReadOnly<Customer>().FirstOrDefaultAsync(e => e.Name == customerName);
+            Customer customer = await repository.AllAsReadOnly<Customer>().FirstOrDefaultAsync(e => e.Name == customerName);
+
+            GETCustomerDto customerDto = new GETCustomerDto()
+            {
+                Id = customer.Id.ToString(),
+                Name = customer.Name,
+                Phone = customer.Phone,
+                Email = customer.Email
+            };
+
+            return customerDto;
         }
 
         public async Task<string> Remove(Guid customerId)
