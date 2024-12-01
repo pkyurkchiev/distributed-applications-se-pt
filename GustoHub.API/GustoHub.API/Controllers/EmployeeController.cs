@@ -32,6 +32,12 @@
         public async Task<IActionResult> GetEmployeeByName(string employeeName)
         {
             var employee = await employeeService.GetByNameAsync(employeeName);
+
+            if (employee == null)
+            {
+                return NotFound("Employee not found!");
+            }
+
             return Ok(employeeName);
         }
         [HttpPost]
@@ -43,16 +49,31 @@
         [HttpPut("activate/{id}")]
         public async Task<IActionResult> ActivateEmployee(Guid id)
         {
+            if (!await employeeService.ExistsByIdAsync(id))
+            {
+                return NotFound("Employee not found!");
+            }
+
             return Ok(await employeeService.Activate(id));
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEmployee(PUTEmployeeDto employee, string id)
         {
+            if (!await employeeService.ExistsByIdAsync(Guid.Parse(id)))
+            {
+                return NotFound("Employee not found!");
+            }
+
             return Ok(await employeeService.UpdateAsync(employee, id));
         }
         [HttpDelete("deactivate/{id}")]
         public async Task<IActionResult> DeactivateEmployee(Guid id)
         {
+            if (!await employeeService.ExistsByIdAsync(id))
+            {
+                return NotFound("Employee not found!");
+            }
+
             return Ok(await employeeService.Deactivate(id));
         }
     }

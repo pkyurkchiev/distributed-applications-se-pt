@@ -1,11 +1,9 @@
 ﻿namespace GustoHub.API.Controllers
 {
-    using GustoHub.Data.Models;
     using Microsoft.AspNetCore.Mvc;
     using GustoHub.Services.Interfaces;
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.PUT;
-    using GustoHub.Services.Services;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -35,6 +33,12 @@
         public async Task<IActionResult> GetOrderByName(DateTime dateTime)
         {
             var order = await orderService.GetByDateAsync(dateTime);
+
+            if (order == null)
+            {
+                return NotFound("Order not found!");
+            }
+
             return Ok(order.OrderDate);
         }
         [HttpPost]
@@ -55,11 +59,21 @@
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOrder(PUTOrderDto order, int id)
         {
+            if (!await orderService.ExistsByIdAsync(id))
+            {
+                return NotFound("Order not found!");
+            }
+
             return Ok(await orderService.UpdateAsync(order, id));
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveOrder(int id)
         {
+            if (!await orderService.ExistsByIdAsync(id))
+            {
+                return NotFound("Order not found!");
+            }
+
             return Ok(await orderService.Remove(id));
         }
     }

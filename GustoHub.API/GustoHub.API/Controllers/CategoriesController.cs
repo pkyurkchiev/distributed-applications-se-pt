@@ -4,6 +4,7 @@
     using GustoHub.Services.Interfaces;
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.PUT;
+    using GustoHub.Data.Models;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -25,7 +26,14 @@
         [HttpGet("{categoryName}")]
         public async Task<IActionResult> GetCategoryByName(string categoryName)
         {
-            var category = await categoryService.GetByNameAsync(categoryName);
+            var category
+                = await categoryService.GetByNameAsync(categoryName);
+
+            if (category == null) 
+            {
+                return NotFound("Category not found!");
+            }
+
             return Ok(category);
         }
         [HttpPost]
@@ -37,11 +45,21 @@
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCategory(PUTCategoryDto category, int id)
         {
+            if (!await categoryService.ExistsByIdAsync(id))
+            {
+                return NotFound("Category not found!");
+            }
+            
             return Ok(await categoryService.UpdateAsync(category, id));
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveCategory(int id)
         {
+            if (!await categoryService.ExistsByIdAsync(id))
+            {
+                return NotFound("Category not found!");
+            }
+
             return Ok(await categoryService.Remove(id));
         }
     }

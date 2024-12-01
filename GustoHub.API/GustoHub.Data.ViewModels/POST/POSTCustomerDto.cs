@@ -13,6 +13,10 @@
         public string Email { get; set; } = string.Empty!;
 
         [MaxLength(15)]
+        [RegularExpression(@"^(?:\+359|00359|0)\s?\d{1,3}\s?\d{6}$",
+        ErrorMessage = "Please enter a valid Bulgarian phone number in the format" +
+            " +359XXXXXXXXX," +
+            " 00359XXXXXXXXX, or 0XXXXXXXXX.")]
         public string Phone { get; set; } = string.Empty!;
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace GustoHub.API.Controllers
 {
-    using GustoHub.Data.Models;
     using Microsoft.AspNetCore.Mvc;
     using GustoHub.Services.Interfaces;
     using GustoHub.Data.ViewModels.POST;
@@ -31,6 +30,12 @@
         public async Task<IActionResult> GetDishByName(string dishName)
         {
             var dish = await dishService.GetByNameAsync(dishName);
+
+            if (dish == null)
+            {
+                return NotFound("Dish not found!");
+            }
+
             return Ok(dishName);
         }
         [HttpPost]
@@ -46,11 +51,20 @@
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDish(PUTDishDto dish, int id)
         {
+            if (!await dishService.ExistsByIdAsync(id))
+            {
+                return NotFound("Dish not found!");
+            }
             return Ok(await dishService.UpdateAsync(dish, id));
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveDish(int id)
         {
+            if (!await dishService.ExistsByIdAsync(id))
+            {
+                return NotFound("Dish not found!");
+            }
+
             return Ok(await dishService.Remove(id));
         }
     }

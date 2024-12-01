@@ -26,8 +26,15 @@
         }
         [HttpGet("{customerName}")]
         public async Task<IActionResult> GetCustomerByName(string customerName)
-        {
-            var customer = await customerService.GetByNameAsync(customerName);
+        {            
+            var customer
+                = await customerService.GetByNameAsync(customerName);
+
+            if (customer == null)
+            {
+                return NotFound("Cutomer not found!");
+            }
+
             return Ok(customerName);
         }
         [HttpPost]
@@ -39,12 +46,22 @@
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCusomer(PUTCustomerDto customer, string id)
         {
+            if (!await customerService.ExistsByIdAsync(Guid.Parse(id)))
+            {
+                return NotFound("Cutomer not found!");
+            }
+
             return Ok(await customerService.UpdateAsync(customer, id));
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> RemoveCustomer(Guid id)
+        public async Task<IActionResult> RemoveCustomer(string id)
         {
-            return Ok(await customerService.Remove(id));
+            if (!await customerService.ExistsByIdAsync(Guid.Parse(id)))
+            {
+                return NotFound("Cutomer not found!");
+            }
+
+            return Ok(await customerService.Remove(Guid.Parse(id)));
         }
     }
 }
