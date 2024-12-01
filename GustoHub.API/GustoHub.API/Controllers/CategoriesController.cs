@@ -1,9 +1,9 @@
 ﻿namespace GustoHub.API.Controllers
 {
-    using GustoHub.Data.Models;
     using Microsoft.AspNetCore.Mvc;
     using GustoHub.Services.Interfaces;
     using GustoHub.Data.ViewModels.POST;
+    using GustoHub.Data.ViewModels.PUT;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -38,6 +38,11 @@
         public async Task<IActionResult> RemoveCategory(int id)
         {
             return Ok(await categoryService.Remove(id));
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutCategory(PUTCategoryDto category, int id)
+        {
+            return Ok(await categoryService.UpdateAsync(category, id));
         }
     }
 }

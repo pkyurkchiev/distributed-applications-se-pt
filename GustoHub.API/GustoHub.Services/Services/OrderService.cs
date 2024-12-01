@@ -1,12 +1,12 @@
 ﻿namespace GustoHub.Services.Services
 {
+    using System.Globalization;
     using GustoHub.Data.Common;
     using GustoHub.Data.Models;
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using GustoHub.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
-    using System.Globalization;
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.GET;
     using GustoHub.Data.ViewModels.PUT;
@@ -114,8 +114,7 @@
 
         public async Task<string> UpdateAsync(PUTOrderDto orderDto, int orderId)
         {
-            Order? order = await repository.AllAsReadOnly<Order>()
-                .FirstOrDefaultAsync(o => o.Id == orderId);
+            Order? order = await repository.GetByIdAsync<Order>(orderId);
 
             order.CustomerId = order.CustomerId;
             order.EmployeeId = order.EmployeeId;
@@ -129,7 +128,7 @@
 
             await repository.SaveChangesAsync();
 
-            return "Order added Successfully!";
+            return "Order updated Successfully!";
         }
     }
 }

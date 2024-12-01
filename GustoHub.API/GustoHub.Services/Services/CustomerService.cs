@@ -97,8 +97,7 @@
 
         public async Task<string> UpdateAsync(PUTCustomerDto customerDto, string customerId)
         {
-            Customer? customer = await repository.AllAsReadOnly<Customer>()
-                .FirstOrDefaultAsync(c => c.Id == Guid.Parse(customerId));
+            Customer? customer = await repository.GetByIdAsync<Customer>(Guid.Parse(customerId));
 
             customer.Name = customerDto.Name;
             customer.Phone = customerDto.Phone;

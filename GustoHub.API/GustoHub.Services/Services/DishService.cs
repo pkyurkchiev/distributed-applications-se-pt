@@ -92,8 +92,7 @@
 
         public async Task<string> UpdateAsync(PUTDishDto dishDto, int dishId)
         {
-            Dish? dish  = await repository.AllAsReadOnly<Dish>()
-                .FirstOrDefaultAsync(d => d.Id == dishId);
+            Dish? dish = await repository.GetByIdAsync<Dish>(dishId);
 
             dish.Name = dishDto.Name;
             dish.Price = dishDto.Price;
@@ -101,7 +100,7 @@
 
             await repository.SaveChangesAsync();
 
-            return dish.Name;
+            return "Dish updated successfully!";
         }
     }
 }

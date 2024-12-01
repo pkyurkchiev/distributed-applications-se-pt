@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using GustoHub.Services.Interfaces;
     using GustoHub.Data.ViewModels.POST;
+    using GustoHub.Data.ViewModels.PUT;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -46,6 +47,11 @@
         public async Task<IActionResult> RemoveDish(int id)
         {
             return Ok(await dishService.Remove(id));
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutDish(PUTDishDto dish, int id)
+        {
+            return Ok(await dishService.UpdateAsync(dish, id));
         }
     }
 }

@@ -132,8 +132,7 @@
 
         public async Task<string> UpdateAsync(PUTCategoryDto categoryDto, int categoryId)
         {
-            Category? category = await repository.AllAsReadOnly<Category>()
-                .FirstOrDefaultAsync(c => c.Id == categoryId);
+            Category? category = await repository.GetByIdAsync<Category>(categoryId);          
 
             category.Name = categoryDto.Name;
 

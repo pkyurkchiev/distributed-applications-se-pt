@@ -4,6 +4,8 @@
     using Microsoft.AspNetCore.Mvc;
     using GustoHub.Services.Interfaces;
     using GustoHub.Data.ViewModels.POST;
+    using GustoHub.Data.ViewModels.PUT;
+    using GustoHub.Services.Services;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -38,6 +40,11 @@
         public async Task<IActionResult> RemoveCustomer(Guid id)
         {
             return Ok(await customerService.Remove(id));
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutCusomer(PUTCustomerDto customer, string id)
+        {
+            return Ok(await customerService.UpdateAsync(customer, id));
         }
     }
 }

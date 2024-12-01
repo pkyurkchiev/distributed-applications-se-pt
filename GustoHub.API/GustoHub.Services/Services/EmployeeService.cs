@@ -102,8 +102,7 @@
 
         public async Task<string> UpdateAsync(PUTEmployeeDto employeeDto, string employeeId)
         {
-            Employee? employee = await repository.AllAsReadOnly<Employee>()
-                .FirstOrDefaultAsync(e => e.Id == Guid.Parse(employeeId));
+            Employee? employee = await repository.GetByIdAsync<Employee>(Guid.Parse(employeeId));
 
             employee.Name = employeeDto.Name;
             employee.Title = employeeDto.Title;
@@ -111,7 +110,7 @@
 
             await repository.SaveChangesAsync();
 
-            return "Employee added Successfully!";
+            return "Employee updated Successfully!";
         }
     }
 }
