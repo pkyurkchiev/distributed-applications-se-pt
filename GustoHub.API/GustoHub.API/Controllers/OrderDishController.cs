@@ -1,12 +1,8 @@
-﻿using GustoHub.Data.Common;
-using GustoHub.Data.Models;
-using GustoHub.Services.Interfaces;
-using GustoHub.Services.Services;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace GustoHub.API.Controllers
+﻿namespace GustoHub.API.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using GustoHub.Services.Interfaces;
+
     [Route("api/[controller]")]
     [ApiController]
     public class OrderDishController : ControllerBase
@@ -25,6 +21,12 @@ namespace GustoHub.API.Controllers
             this.dishService = dishService;
         }
 
+        [HttpGet("all/{orderId}")]
+        public async Task<IActionResult> GetAllDishOrders(int orderId)
+        {
+            var allCustomers = await orderDishService.GetDishesForOrder(orderId);
+            return Ok(allCustomers);
+        }
         [HttpPost]
         public async Task<IActionResult> PostDishOrder
             ([FromQuery] int orderId,
@@ -42,12 +44,6 @@ namespace GustoHub.API.Controllers
 
             string responseMessage = await orderDishService.AddDishToOrder(orderId, dishId, quantity);
             return Ok(responseMessage);
-        }
-        [HttpGet("all/{orderId}")]
-        public async Task<IActionResult> GetAllDishOrders(int orderId)
-        {
-            var allCustomers = await orderDishService.GetDishesForOrder(orderId);
-            return Ok(allCustomers);
-        }
+        }    
     }
 }

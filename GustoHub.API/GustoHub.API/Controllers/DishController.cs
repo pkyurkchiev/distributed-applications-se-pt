@@ -21,16 +21,6 @@
             this.categoryService = categoryService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> PostDish([FromBody] POSTDishDto dishDto)
-        {
-            if (!await categoryService.ExistsByIdAsync(dishDto.CategoryId))
-            {
-                return NotFound("Category not found!");
-            }
-            string responseMessage = await dishService.AddAsync(dishDto);
-            return Ok(responseMessage);
-        }
         [HttpGet("all")]
         public async Task<IActionResult> GetAllDishs()
         {
@@ -43,15 +33,25 @@
             var dish = await dishService.GetByNameAsync(dishName);
             return Ok(dishName);
         }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> RemoveDish(int id)
+        [HttpPost]
+        public async Task<IActionResult> PostDish([FromBody] POSTDishDto dishDto)
         {
-            return Ok(await dishService.Remove(id));
+            if (!await categoryService.ExistsByIdAsync(dishDto.CategoryId))
+            {
+                return NotFound("Category not found!");
+            }
+            string responseMessage = await dishService.AddAsync(dishDto);
+            return Ok(responseMessage);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDish(PUTDishDto dish, int id)
         {
             return Ok(await dishService.UpdateAsync(dish, id));
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> RemoveDish(int id)
+        {
+            return Ok(await dishService.Remove(id));
         }
     }
 }

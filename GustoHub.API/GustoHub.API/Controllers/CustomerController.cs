@@ -18,12 +18,6 @@
             this.customerService = customerService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> PostCustomer([FromBody] POSTCustomerDto customerDto)
-        {
-            string responseMessage = await customerService.AddAsync(customerDto);
-            return Ok(responseMessage);
-        }
         [HttpGet("all")]
         public async Task<IActionResult> GetAllCustomers()
         {
@@ -36,15 +30,21 @@
             var customer = await customerService.GetByNameAsync(customerName);
             return Ok(customerName);
         }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> RemoveCustomer(Guid id)
+        [HttpPost]
+        public async Task<IActionResult> PostCustomer([FromBody] POSTCustomerDto customerDto)
         {
-            return Ok(await customerService.Remove(id));
+            string responseMessage = await customerService.AddAsync(customerDto);
+            return Ok(responseMessage);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCusomer(PUTCustomerDto customer, string id)
         {
             return Ok(await customerService.UpdateAsync(customer, id));
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> RemoveCustomer(Guid id)
+        {
+            return Ok(await customerService.Remove(id));
         }
     }
 }

@@ -25,6 +25,18 @@
             this.customerService = customerService;
         }
 
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAllOrders()
+        {
+            var allOrders = await orderService.AllAsync();
+            return Ok(allOrders);
+        }
+        [HttpGet("{orderName}")]
+        public async Task<IActionResult> GetOrderByName(DateTime dateTime)
+        {
+            var order = await orderService.GetByDateAsync(dateTime);
+            return Ok(order.OrderDate);
+        }
         [HttpPost]
         public async Task<IActionResult> PostOrder([FromBody] POSTOrderDto orderDto)
         {
@@ -40,27 +52,15 @@
             string responseMessage = await orderService.AddAsync(orderDto);
             return Ok(responseMessage);
         }
-        [HttpGet("all")]
-        public async Task<IActionResult> GetAllOrders()
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutOrder(PUTOrderDto order, int id)
         {
-            var allOrders = await orderService.AllAsync();
-            return Ok(allOrders);
-        }
-        [HttpGet("{orderName}")]
-        public async Task<IActionResult> GetOrderByName(DateTime dateTime)
-        {
-            var order = await orderService.GetByDateAsync(dateTime);
-            return Ok(order.OrderDate);
+            return Ok(await orderService.UpdateAsync(order, id));
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveOrder(int id)
         {
             return Ok(await orderService.Remove(id));
-        }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrder(PUTOrderDto order, int id)
-        {
-            return Ok(await orderService.UpdateAsync(order, id));
         }
     }
 }

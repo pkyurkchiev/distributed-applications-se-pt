@@ -16,12 +16,6 @@
             this.employeeService = employeeService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> PostEmployee([FromBody] POSTEmployeeDto employeeDto)
-        {
-            string responseMessage = await employeeService.AddAsync(employeeDto);
-            return Ok(responseMessage);
-        }
         [HttpGet("all-active")]
         public async Task<IActionResult> GetAllActiveEmployees()
         {
@@ -40,10 +34,11 @@
             var employee = await employeeService.GetByNameAsync(employeeName);
             return Ok(employeeName);
         }
-        [HttpDelete("deactivate/{id}")]
-        public async Task<IActionResult> DeactivateEmployee(Guid id)
+        [HttpPost]
+        public async Task<IActionResult> PostEmployee([FromBody] POSTEmployeeDto employeeDto)
         {
-            return Ok(await employeeService.Deactivate(id));
+            string responseMessage = await employeeService.AddAsync(employeeDto);
+            return Ok(responseMessage);
         }
         [HttpPut("activate/{id}")]
         public async Task<IActionResult> ActivateEmployee(Guid id)
@@ -54,6 +49,11 @@
         public async Task<IActionResult> PutEmployee(PUTEmployeeDto employee, string id)
         {
             return Ok(await employeeService.UpdateAsync(employee, id));
+        }
+        [HttpDelete("deactivate/{id}")]
+        public async Task<IActionResult> DeactivateEmployee(Guid id)
+        {
+            return Ok(await employeeService.Deactivate(id));
         }
     }
 }

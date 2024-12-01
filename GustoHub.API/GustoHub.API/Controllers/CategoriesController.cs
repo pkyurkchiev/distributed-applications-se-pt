@@ -16,12 +16,6 @@
             this.categoryService = categoryService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> PostCategory([FromBody] POSTCategoryDto categoryDto)
-        {
-            string responseMessage = await categoryService.AddAsync(categoryDto);
-            return Ok(responseMessage);
-        }
         [HttpGet("all")]
         public async Task<IActionResult> GetAllCategories()
         {
@@ -34,15 +28,21 @@
             var category = await categoryService.GetByNameAsync(categoryName);
             return Ok(category);
         }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> RemoveCategory(int id)
+        [HttpPost]
+        public async Task<IActionResult> PostCategory([FromBody] POSTCategoryDto categoryDto)
         {
-            return Ok(await categoryService.Remove(id));
+            string responseMessage = await categoryService.AddAsync(categoryDto);
+            return Ok(responseMessage);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCategory(PUTCategoryDto category, int id)
         {
             return Ok(await categoryService.UpdateAsync(category, id));
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> RemoveCategory(int id)
+        {
+            return Ok(await categoryService.Remove(id));
         }
     }
 }
