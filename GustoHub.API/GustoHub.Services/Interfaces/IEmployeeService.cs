@@ -11,8 +11,10 @@
         Task<bool> ExistsByIdAsync(Guid employeeId);
         Task<GETEmployeeDto> GetByIdAsync(Guid employeeId);
         Task<GETEmployeeDto> GetByNameAsync(string employeeName);
-        Task<IEnumerable<GETEmployeeDto>> AllAsync();
-        Task<string> Remove(Guid employeeId);
+        Task<IEnumerable<GETEmployeeDto>> AllActiveAsync();
+        Task<IEnumerable<GETEmployeeDto>> AllDeactivatedAsync();
+        Task<string> Deactivate(Guid employeeId);
+        Task<string> Activate(Guid employeeId);
         Task<string> UpdateAsync(PUTEmployeeDto employee, string employeeId);
     }
 }

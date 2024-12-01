@@ -11,7 +11,5 @@ namespace GustoHub.Data.ViewModels.GET
         public string Title { get; set; } = string.Empty!;
 
         public string HireDate { get; set; } = string.Empty!;
-
-        public bool IsActive { get; set; }
     }
 }
