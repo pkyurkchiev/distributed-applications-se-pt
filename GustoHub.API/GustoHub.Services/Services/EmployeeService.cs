@@ -100,7 +100,7 @@
 
             return employeeDto;
         }
-        public async Task<string> Activate(Guid employeeId)
+        public async Task<string> ActivateAsync(Guid employeeId)
         {
             Employee employee = await repository.GetByIdAsync<Employee>(employeeId);
             employee.IsActive = true;
@@ -109,7 +109,7 @@
             return "Employee activated!";
         }
 
-        public async Task<string> Deactivate(Guid employeeId)
+        public async Task<string> DeactivateAsync(Guid employeeId)
         {
             Employee employee = await repository.GetByIdAsync<Employee>(employeeId);
             employee.IsActive = false;
