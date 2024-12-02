@@ -9,5 +9,7 @@
 
         [Required(ErrorMessage = "Id of dish is required.")]
         public int DishId { get; set; }
+
+        public int Quantity { get; set; }
     }
 }

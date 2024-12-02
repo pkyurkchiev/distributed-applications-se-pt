@@ -24,27 +24,25 @@
         }
 
         [HttpGet("all/{orderId}")]
-        public async Task<IActionResult> GetAllDishOrders(int orderId)
+        public async Task<IActionResult> GetAllDishesForOrder(int orderId)
         {
             var allCustomers = await orderDishService.GetDishesForOrder(orderId);
             return Ok(allCustomers);
         }
-        [HttpPost]
-        public async Task<IActionResult> PostDishOrder
-            ([FromQuery] int orderId,
-            [FromQuery] int dishId,
-            [FromQuery] int quantity)
+        [HttpGet("{orderId:int}/{dishId:int}")]
+        public async Task<IActionResult> GetById(int orderId, int dishId)
         {
-            if (!await orderService.ExistsByIdAsync(orderId))
+            var orderDish = await orderDishService.GetOrderDishByIdAsync(orderId, dishId);
+            if (orderDish == null) 
             {
-                return NotFound("Order not found!");
+                return NotFound("Dish for order not found!");
             }
-            if (!await dishService.ExistsByIdAsync(dishId))
-            {
-                return NotFound("Dish not found!");
-            }
-
-            string responseMessage = await orderDishService.AddDishToOrder(orderId, dishId, quantity);
+            return Ok(orderDish);
+        }
+        [HttpPost]
+        public async Task<IActionResult> PostOrderDish([FromBody] POSTOrderDishDto orderDishDto)
+        {
+            string responseMessage = await orderDishService.AddDishToOrder(orderDishDto);
             return Ok(responseMessage);
         }
         [HttpPut]

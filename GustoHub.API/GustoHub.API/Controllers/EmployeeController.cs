@@ -54,7 +54,7 @@
                 return NotFound("Employee not found!");
             }
 
-            return Ok(await employeeService.Activate(id));
+            return Ok(await employeeService.ActivateAsync(id));
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEmployee(PUTEmployeeDto employee, string id)
@@ -74,7 +74,7 @@
                 return NotFound("Employee not found!");
             }
 
-            return Ok(await employeeService.Deactivate(id));
+            return Ok(await employeeService.DeactivateAsync(id));
         }
     }
 }

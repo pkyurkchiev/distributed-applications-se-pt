@@ -13,8 +13,8 @@
         Task<GETEmployeeDto> GetByNameAsync(string employeeName);
         Task<IEnumerable<GETEmployeeDto>> AllActiveAsync();
         Task<IEnumerable<GETEmployeeDto>> AllDeactivatedAsync();
-        Task<string> Deactivate(Guid employeeId);
-        Task<string> Activate(Guid employeeId);
+        Task<string> DeactivateAsync(Guid employeeId);
+        Task<string> ActivateAsync(Guid employeeId);
         Task<string> UpdateAsync(PUTEmployeeDto employee, string employeeId);
     }
 }
