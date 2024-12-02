@@ -4,6 +4,7 @@
     using GustoHub.Services.Interfaces;
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.PUT;
+    using GustoHub.Data.Models;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -42,13 +43,30 @@
         [HttpPost]
         public async Task<IActionResult> PostOrderDish([FromBody] POSTOrderDishDto orderDishDto)
         {
-            string responseMessage = await orderDishService.AddDishToOrder(orderDishDto);
+            if (!await orderService.ExistsByIdAsync(orderDishDto.OrderId))
+            {
+                return NotFound("Order not found!");
+            }
+            if (!await dishService.ExistsByIdAsync(orderDishDto.DishId))
+            {
+                return NotFound("Order not found!");
+            }
+            string responseMessage = await orderDishService.AddDishToOrderAsync(orderDishDto);
             return Ok(responseMessage);
         }
         [HttpPut]
-        public async Task<IActionResult> UpdateOrderDish([FromBody] PUTOrderDishDto orderDishDto)
+        public async Task<IActionResult> UpdateOrderDish(int orderId, int dishId, [FromBody] PUTOrderDishDto orderDishDto)
         {
-            string responseMessage = await orderDishService.UpdateOrderDishAsync(orderDishDto);
+            if (!await orderService.ExistsByIdAsync(orderId))
+            {
+                return NotFound("Order not found!");
+            }
+            if (!await dishService.ExistsByIdAsync(dishId))
+            {
+                return NotFound("Order not found!");
+            }
+
+            string responseMessage = await orderDishService.UpdateOrderDishAsync(orderId, dishId, orderDishDto);
             return Ok(responseMessage);
         }
     }

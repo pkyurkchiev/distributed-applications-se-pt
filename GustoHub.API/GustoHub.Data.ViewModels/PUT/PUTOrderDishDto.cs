@@ -4,10 +4,6 @@
 
     public class PUTOrderDishDto
     {
-        [Required(ErrorMessage = "Id of order is required.")]
-        public int OrderId { get; set; }
-
-        [Required(ErrorMessage = "Id of dish is required.")]
-        public int DishId { get; set; }
+        public int Quantity { get; set; }
     }
 }

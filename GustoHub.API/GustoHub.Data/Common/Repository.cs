@@ -51,5 +51,10 @@
         {
             return await DbSet<T>().FindAsync(id);
         }
+
+        public async Task<T?> GetByIdsAsync<T>(object firstId, object secondId) where T : class
+        {
+            return await DbSet<T>().FindAsync(firstId, secondId);
+        }
     }
 }

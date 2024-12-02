@@ -28,7 +28,6 @@
                 CompletionDate = string.IsNullOrWhiteSpace(orderDto.CompletionDate)
                      ? (DateTime?)null
                      : DateTime.ParseExact(orderDto.CompletionDate, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture),
-                TotalAmount = orderDto.TotalAmount,
                 CustomerId = Guid.Parse(orderDto.CustomerId),
                 EmployeeId = Guid.Parse(orderDto.EmployeeId)
             };
@@ -124,7 +123,6 @@
                 ? (DateTime?)null
                 : DateTime.ParseExact(
                     orderDto.CompletionDate, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
-            order.TotalAmount = orderDto.TotalAmount;
 
             await repository.SaveChangesAsync();
 

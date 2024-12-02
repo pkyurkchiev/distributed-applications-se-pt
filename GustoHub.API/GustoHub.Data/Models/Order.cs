@@ -5,6 +5,11 @@
 
     public class Order
     {
+        public Order()
+        {
+            TotalAmount = 0;
+        }
+
         public int Id { get; set; }
 
         [Required]

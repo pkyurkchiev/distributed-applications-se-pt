@@ -18,19 +18,37 @@
         {
             this.repository = repository;
         }
-        public async Task<string> AddDishToOrder(POSTOrderDishDto orderDishDto)
+        public async Task<string> AddDishToOrderAsync(POSTOrderDishDto orderDishDto)
         {
-            var orderDish = new OrderDish
+            var orderDish = await repository.GetByIdsAsync<OrderDish>(orderDishDto.OrderId, orderDishDto.DishId);
+            var order = await repository.GetByIdAsync<Order>(orderDishDto.OrderId);
+            var dish = await repository.GetByIdAsync<Dish>(orderDishDto.DishId);
+
+            decimal dishTotalPrice = dish.Price * orderDishDto.Quantity;
+
+            if (orderDish != null)
+            {
+                orderDish.Quantity += orderDishDto.Quantity;
+
+                order.TotalAmount += dishTotalPrice;
+
+                await repository.SaveChangesAsync();
+                return "Dish's quantity added successfully to Order!";
+            }
+
+            var newOrderDish = new OrderDish
             {
                 OrderId = orderDishDto.OrderId,
                 DishId = orderDishDto.DishId,
                 Quantity = orderDishDto.Quantity
             };
 
-            await repository.AddAsync(orderDish);
+            order.TotalAmount += dishTotalPrice;
+
+            await repository.AddAsync(newOrderDish);
             await repository.SaveChangesAsync();
 
-            return "Dish added successfully to Order!";    
+            return "Dish added successfully to Order!";
         }
         public async Task<GETOrderDishDto?> GetOrderDishByIdAsync(int orderId, int dishId)
         {
@@ -68,6 +86,16 @@
 
             return dishes;
 
+        }
+
+        public async Task<string> UpdateOrderDishAsync(int orderId, int dishId, PUTOrderDishDto orderDishDto)
+        {
+            var orderDish = await repository.GetByIdsAsync<OrderDish>(orderId, dishId);
+            orderDish.Quantity = orderDishDto.Quantity;
+
+            await repository.SaveChangesAsync();
+
+            return "OrderDish updated successfully!";
         }
     }
 }
