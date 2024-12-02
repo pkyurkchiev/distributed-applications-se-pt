@@ -4,6 +4,7 @@
     using GustoHub.Services.Interfaces;
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.PUT;
+    using GustoHub.API.Extensions;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -29,17 +30,17 @@
             var allOrders = await orderService.AllAsync();
             return Ok(allOrders);
         }
-        [HttpGet("{orderName}")]
-        public async Task<IActionResult> GetOrderByName(DateTime dateTime)
+        [HttpGet("{dateTime}")]
+        public async Task<IActionResult> GetOrderByDate(string dateTime)
         {
-            var order = await orderService.GetByDateAsync(dateTime);
+            var order = await orderService.GetByDateAsync(DateTime.Parse(dateTime));
 
             if (order == null)
             {
                 return NotFound("Order not found!");
             }
 
-            return Ok(order.OrderDate);
+            return Ok(order);
         }
         [HttpPost]
         public async Task<IActionResult> PostOrder([FromBody] POSTOrderDto orderDto)

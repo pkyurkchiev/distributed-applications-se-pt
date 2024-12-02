@@ -83,7 +83,9 @@
 
         public async Task<GETOrdersDto> GetByDateAsync(DateTime date)
         {
-            Order order = await repository.AllAsReadOnly<Order>().FirstOrDefaultAsync(o => o.OrderDate == date);
+            Order order = await repository
+                .AllAsReadOnly<Order>()
+                .FirstOrDefaultAsync(o => o.OrderDate.Date == date.Date || o.OrderDate == date);
 
             GETOrdersDto orderDto = new GETOrdersDto()
             {
