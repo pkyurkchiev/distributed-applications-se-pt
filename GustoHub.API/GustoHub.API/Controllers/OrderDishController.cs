@@ -24,11 +24,17 @@
             this.dishService = dishService;
         }
 
-        [HttpGet("all/{orderId}")]
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAllOrderDishes()
+        {
+            var allOrderDishes = await orderDishService.AllAsync();
+            return Ok(allOrderDishes);
+        }
+        [HttpGet("allDishesBy/{orderId}")]
         public async Task<IActionResult> GetAllDishesForOrder(int orderId)
         {
-            var allCustomers = await orderDishService.GetDishesForOrder(orderId);
-            return Ok(allCustomers);
+            var allDishesByOrder = await orderDishService.GetDishesForOrder(orderId);
+            return Ok(allDishesByOrder);
         }
         [HttpGet("{orderId:int}/{dishId:int}")]
         public async Task<IActionResult> GetById(int orderId, int dishId)

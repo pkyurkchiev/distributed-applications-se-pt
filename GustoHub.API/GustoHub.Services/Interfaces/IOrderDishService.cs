@@ -8,7 +8,8 @@
     public interface IOrderDishService
     {
         Task<string> AddDishToOrderAsync(POSTOrderDishDto orderDishDto);
-        Task<IEnumerable<Dish>> GetDishesForOrder(int orderId);
+        Task<IEnumerable<GETDishDto>> GetDishesForOrder(int orderId);
+        Task<IEnumerable<GETOrderDishDto?>> AllAsync();
         Task<GETOrderDishDto?> GetOrderDishByIdAsync(int orderId, int dishId);
         Task<string> UpdateOrderDishAsync(int orderId, int dishId, PUTOrderDishDto orderDishDto);
     }

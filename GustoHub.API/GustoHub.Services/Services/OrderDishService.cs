@@ -18,6 +18,39 @@
         {
             this.repository = repository;
         }
+        public async Task<IEnumerable<GETOrderDishDto?>> AllAsync()
+        {
+            List<OrderDish> allOrderDishes = await repository.AllAsReadOnly<OrderDish>()
+                                 .Include(od => od.Order)
+                                 .Include(od => od.Dish)
+                                 .ToListAsync();
+
+            List<GETOrderDishDto> allOrderDishDtos = new List<GETOrderDishDto>();
+
+            foreach (var orderDish in allOrderDishes)
+            {
+                GETOrderDishDto orderDishDto = new GETOrderDishDto()
+                {
+                    OrderDate = orderDish.Order.OrderDate.ToString("f"),
+                    OrderCompletionDate = orderDish.Order.CompletionDate.HasValue
+                     ? orderDish.Order.OrderDate.ToString("f")
+                     : null,
+                    OrderCustomerId = orderDish.Order.CustomerId.ToString(),
+                    OrderEmployeeId = orderDish.Order.EmployeeId.ToString(),
+                    OrderTotalAmount = orderDish.Order.TotalAmount.ToString(),
+
+                    DishName = orderDish.Dish.Name,
+                    DishCategoryId = orderDish.Dish.CategoryId,
+                    DishPrice = orderDish.Dish.Price.ToString(),
+                };
+
+                allOrderDishDtos.Add(orderDishDto);
+            }
+
+            
+
+            return allOrderDishDtos;
+        }
         public async Task<string> AddDishToOrderAsync(POSTOrderDishDto orderDishDto)
         {
             var orderDish = await repository.GetByIdsAsync<OrderDish>(orderDishDto.OrderId, orderDishDto.DishId);
@@ -74,14 +107,19 @@
 
             return orderDishDto;
         }
-        public async Task<IEnumerable<Dish>> GetDishesForOrder(int orderId)
+        public async Task<IEnumerable<GETDishDto>> GetDishesForOrder(int orderId)
         {
-            Order order = await repository.GetByIdAsync<Order>(orderId);
+            Order? order = await repository.GetByIdAsync<Order>(orderId);
 
             var dishes = await repository
                     .AllAsReadOnly<OrderDish>()
                     .Where(od => od.OrderId == orderId)
-                    .Select(od => od.Dish)
+                    .Select(od => new GETDishDto()
+                    {
+                        Name = od.Dish.Name,
+                        Price = od.Dish.Price.ToString("F2"),
+                        CategoryId = od.Dish.CategoryId
+                    })
                     .ToListAsync();
 
             return dishes;
