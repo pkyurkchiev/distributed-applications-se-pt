@@ -4,7 +4,9 @@
 
     public interface IOrderDishService
     {
-        public Task<string> AddDishToOrder(int orderId, int dishId, int quantity);
-        public Task<IEnumerable<Dish>> GetDishesForOrder(int orderId);
+        Task<string> AddDishToOrder(POSTOrderDishDto orderDishDto);
+        Task<IEnumerable<Dish>> GetDishesForOrder(int orderId);
+        Task<GETOrderDishDto?> GetOrderDishByIdAsync(int orderId, int dishId);
+        
     }
 }

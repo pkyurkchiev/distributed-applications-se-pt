@@ -2,6 +2,8 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using GustoHub.Services.Interfaces;
+    using GustoHub.Data.ViewModels.POST;
+    using GustoHub.Data.ViewModels.PUT;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -44,6 +46,12 @@
 
             string responseMessage = await orderDishService.AddDishToOrder(orderId, dishId, quantity);
             return Ok(responseMessage);
-        }    
+        }
+        [HttpPut]
+        public async Task<IActionResult> UpdateOrderDish([FromBody] PUTOrderDishDto orderDishDto)
+        {
+            string responseMessage = await orderDishService.UpdateOrderDishAsync(orderDishDto);
+            return Ok(responseMessage);
+        }
     }
 }
