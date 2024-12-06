@@ -21,10 +21,10 @@
         }
 
         public async Task<string> AddAsync(POSTOrderDto orderDto)
-        {
+        {          
             Order order = new Order() 
             {
-                OrderDate = DateTime.ParseExact(orderDto.OrderDate, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture),
+                OrderDate = DateTime.Now,
                 CompletionDate = string.IsNullOrWhiteSpace(orderDto.CompletionDate)
                      ? (DateTime?)null
                      : DateTime.ParseExact(orderDto.CompletionDate, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture),

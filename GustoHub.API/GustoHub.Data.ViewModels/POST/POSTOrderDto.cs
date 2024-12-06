@@ -4,10 +4,6 @@
 
     public class POSTOrderDto
     {
-        [Required(ErrorMessage = "Please enter a valid date! Example: 18/02/2024 23:30")]
-        [DisplayFormat(DataFormatString = "dd/MM/yyyy HH:mm")]
-        public string OrderDate { get; set; } = null!;
-
         [DisplayFormat(DataFormatString = "dd/MM/yyyy HH:mm")]
         public string? CompletionDate { get; set; }
 
