@@ -129,6 +129,13 @@
             await repository.SaveChangesAsync();
 
             return "Employee updated Successfully!";
-        }       
+        }
+
+        public async Task<bool> IsEmployeeActiveAsync(Guid employeeId)
+        {
+            Employee? employee = await repository.GetByIdAsync<Employee>(employeeId);
+
+            return employee.IsActive;
+        }
     }
 }

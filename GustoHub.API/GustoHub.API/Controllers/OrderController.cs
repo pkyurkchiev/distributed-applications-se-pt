@@ -45,6 +45,7 @@
         [HttpPost]
         public async Task<IActionResult> PostOrder([FromBody] POSTOrderDto orderDto)
         {
+            //Might make optimisation here if only get one employee and pass it's params bellow.
             if (!await employeeService.ExistsByIdAsync(Guid.Parse(orderDto.EmployeeId)))
             {
                 return NotFound("Employee not found!");
@@ -52,6 +53,10 @@
             if (!await customerService.ExistsByIdAsync(Guid.Parse(orderDto.CustomerId)))
             {
                 return NotFound("Customer not found!");
+            }
+            if (!await employeeService.IsEmployeeActiveAsync(Guid.Parse(orderDto.EmployeeId)))
+            {
+                return BadRequest("Employee is deactivated!");
             }
 
             string responseMessage = await orderService.AddAsync(orderDto);

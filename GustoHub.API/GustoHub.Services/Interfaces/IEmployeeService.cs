@@ -16,5 +16,6 @@
         Task<string> DeactivateAsync(Guid employeeId);
         Task<string> ActivateAsync(Guid employeeId);
         Task<string> UpdateAsync(PUTEmployeeDto employee, string employeeId);
+        Task<bool> IsEmployeeActiveAsync(Guid employeeId);
     }
 }
