@@ -2,9 +2,8 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using GustoHub.Services.Interfaces;
-    using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.PUT;
-    using GustoHub.Data.Models;
+    using GustoHub.Data.ViewModels.POST;
     using GustoHub.Infrastructure.Attributes;
 
     [Route("api/[controller]")]
@@ -18,8 +17,6 @@
             this.categoryService = categoryService;
         }
 
-        [APIKeyRequired]
-        [AuthorizeRole("TestRole")]
         [HttpGet("all")]
         public async Task<IActionResult> GetAllCategories()
         {

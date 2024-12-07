@@ -1,9 +1,9 @@
-﻿using GustoHub.Data.Models;
-using GustoHub.Infrastructure.Attributes;
-using Microsoft.AspNetCore.Http;
-
-namespace GustoHub.Infrastructure.Middlewares
+﻿namespace GustoHub.Infrastructure.Middlewares
 {
+    using GustoHub.Data.Models;
+    using GustoHub.Infrastructure.Attributes;
+    using Microsoft.AspNetCore.Http;
+
     public class RoleAuthorizationMiddleware
     {
         private readonly RequestDelegate next;
@@ -15,22 +15,23 @@ namespace GustoHub.Infrastructure.Middlewares
 
         public async Task InvokeAsync(HttpContext context)
         {
-            var user = context.Items["User"] as User;
+            var endpoint = context.GetEndpoint();
 
-            if (user == null)
+            var roleAttribute = endpoint?.Metadata
+                .OfType<AuthorizeRoleAttribute>()
+                .FirstOrDefault();
+
+            if (roleAttribute == null)
             {
-                context.Response.StatusCode = 401;
-                context.Response.ContentType = "application/json";
-                await context.Response.WriteAsync("{\"error\": \"User not found.\"}");
+                await next(context);
                 return;
             }
 
-            var endpoint = context.GetEndpoint();
-            var roleAttribute = endpoint?.Metadata.OfType<AuthorizeRoleAttribute>().FirstOrDefault();
+            var user = context.Items["User"] as User;
 
-            if (roleAttribute != null && user.Role != roleAttribute.Role)
+            if (user == null || user.Role != roleAttribute.Role)
             {
-                context.Response.StatusCode = 403; 
+                context.Response.StatusCode = 403;
                 context.Response.ContentType = "application/json";
                 await context.Response.WriteAsync("{\"error\": \"Forbidden: Insufficient permissions.\"}");
                 return;
@@ -39,5 +40,4 @@ namespace GustoHub.Infrastructure.Middlewares
             await next(context);
         }
     }
-
 }
