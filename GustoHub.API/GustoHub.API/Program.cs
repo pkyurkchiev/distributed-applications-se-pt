@@ -30,6 +30,8 @@ namespace GustoHub.API
             }
 
             app.UseMiddleware<ApiKeyMiddleware>();
+            app.UseMiddleware<RoleAuthorizationMiddleware>();
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

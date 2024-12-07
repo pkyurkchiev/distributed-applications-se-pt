@@ -34,6 +34,16 @@
             return newApiKey;
         }
 
+        public async Task<User?> GetUserByApiKeyAsync(string apiKey)
+        {
+            var apiKeyRecord = await dbContext
+                .ApiKeys
+                .Include(a => a.User)
+                .FirstOrDefaultAsync(a => a.Key == apiKey && a.IsActive && a.ExpirationDate > DateTime.Now);
+
+            return apiKeyRecord?.User;
+        }
+
         public async Task<bool> IsValidApiKeyAsync(string apiKey)
         {
             var key = await dbContext.ApiKeys
