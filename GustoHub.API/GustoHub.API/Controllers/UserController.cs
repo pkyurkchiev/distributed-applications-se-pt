@@ -1,10 +1,9 @@
-﻿
-namespace GustoHub.API.Controllers
+﻿namespace GustoHub.API.Controllers
 {
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.PUT;
+    using GustoHub.Infrastructure.Attributes;
     using GustoHub.Services.Interfaces;
-    using GustoHub.Services.Services;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("api/[controller]")]
@@ -25,6 +24,8 @@ namespace GustoHub.API.Controllers
             return Ok(userDto);
         }
 
+        [APIKeyRequired]
+        [AuthorizeRole("Admin")]
         [HttpPost]
         public async Task<IActionResult> PostUser([FromBody] POSTUserDto userDto)
         {
