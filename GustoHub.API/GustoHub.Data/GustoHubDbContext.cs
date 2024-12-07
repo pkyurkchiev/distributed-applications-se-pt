@@ -22,6 +22,7 @@
         public virtual DbSet<Employee> Employees { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
         public virtual DbSet<OrderDish> OrderDishes { get; set; } = null!;
+        public virtual DbSet<ApiKey> ApiKeys { get; set; } = null!;
 
         /*
          * The OnModelCreating method is overridden to configure the model and relationships using Fluent API.

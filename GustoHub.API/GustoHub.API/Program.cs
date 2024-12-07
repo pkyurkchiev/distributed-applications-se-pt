@@ -2,6 +2,7 @@
 namespace GustoHub.API
 {
     using GustoHub.API.Extensions;
+    using GustoHub.Infrastructure.Middlewares;
 
     public class Program
     {
@@ -28,6 +29,7 @@ namespace GustoHub.API
                 app.UseSwaggerUI();
             }
 
+            app.UseMiddleware<ApiKeyMiddleware>();
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
