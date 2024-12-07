@@ -5,6 +5,6 @@
     public class POSTApiKey
     {
         [Required]
-        public string Owner { get; set; } = null!;
+        public string UserId { get; set; } = null!;
     }
 }

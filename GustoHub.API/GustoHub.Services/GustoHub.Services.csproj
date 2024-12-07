@@ -11,4 +11,8 @@
     <ProjectReference Include="..\GustoHub.Data\GustoHub.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+  </ItemGroup>
+
 </Project>

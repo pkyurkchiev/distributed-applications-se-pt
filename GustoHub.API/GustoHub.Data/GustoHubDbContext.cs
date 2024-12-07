@@ -22,6 +22,7 @@
         public virtual DbSet<Employee> Employees { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
         public virtual DbSet<OrderDish> OrderDishes { get; set; } = null!;
+        public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<ApiKey> ApiKeys { get; set; } = null!;
 
         /*
