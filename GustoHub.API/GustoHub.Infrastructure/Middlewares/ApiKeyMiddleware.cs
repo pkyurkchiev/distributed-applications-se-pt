@@ -20,12 +20,6 @@
         {
             var endpoint = context.GetEndpoint();
 
-            if (context.Request.Path.StartsWithSegments("/api/ApiKey/generate"))
-            {
-                await next(context);
-                return;
-            }
-
             var requiresApiKey = endpoint?.Metadata
                 .OfType<APIKeyRequiredAttribute>()
                 .Any() ?? false;
@@ -47,6 +41,8 @@
             var apiKeyService = context
                 .RequestServices.GetRequiredService<IApiKeyService>();
 
+            var user = await apiKeyService.GetUserByApiKeyAsync(apiKey);
+
             if (!await apiKeyService.IsValidApiKeyAsync(apiKey))
             {
                 context.Response.StatusCode = 401;
@@ -54,6 +50,8 @@
                 await context.Response.WriteAsync("{\"error\": \"Invalid API Key.\"}");
                 return;
             }
+
+            context.Items["User"] = user;
 
             await next(context);
         }

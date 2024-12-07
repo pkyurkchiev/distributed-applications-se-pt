@@ -20,7 +20,7 @@
         [HttpPost("generate")]
         public async Task<IActionResult> GenerateApiKey([FromBody] POSTApiKey request)
         {
-            var apiKey = await apiKeyService.CreateApiKeyAsync(request.Owner);
+            var apiKey = await apiKeyService.CreateApiKeyAsync(request.UserId);
             return Ok(new { apiKey });
         }
 

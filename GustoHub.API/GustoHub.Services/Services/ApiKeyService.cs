@@ -15,13 +15,14 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<string> CreateApiKeyAsync(string owner)
+        public async Task<string> CreateApiKeyAsync(string userId)
         {
             var newApiKey = GenerateApiKey();
+
             var apiKey = new ApiKey
             {
                 Key = newApiKey,
-                Owner = owner,
+                UserId = Guid.Parse(userId),
                 CreatedAt = DateTime.Now,
                 ExpirationDate = DateTime.Now.AddDays(30),
                 IsActive = true
@@ -33,11 +34,23 @@
             return newApiKey;
         }
 
+        public async Task<User?> GetUserByApiKeyAsync(string apiKey)
+        {
+            var apiKeyRecord = await dbContext
+                .ApiKeys
+                .Include(a => a.User)
+                .FirstOrDefaultAsync(a => a.Key == apiKey && a.IsActive && a.ExpirationDate > DateTime.Now);
+
+            return apiKeyRecord?.User;
+        }
+
         public async Task<bool> IsValidApiKeyAsync(string apiKey)
         {
             var key = await dbContext.ApiKeys
-                .Where(k => k.Key == apiKey && k.IsActive &&
-                            (k.ExpirationDate == null || k.ExpirationDate > DateTime.UtcNow))
+                .Where
+                (k => k.Key == apiKey
+                && k.IsActive
+                && (k.ExpirationDate == null || k.ExpirationDate > DateTime.UtcNow))
                 .FirstOrDefaultAsync();
 
             return key != null;
