@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Http;
     using GustoHub.Services.Interfaces;
     using Microsoft.Extensions.DependencyInjection;
+    using GustoHub.Infrastructure.Attributes;
 
     public class ApiKeyMiddleware
     {
@@ -17,7 +18,19 @@
 
         public async Task InvokeAsync(HttpContext context)
         {
+            var endpoint = context.GetEndpoint();
+
             if (context.Request.Path.StartsWithSegments("/api/ApiKey/generate"))
+            {
+                await next(context);
+                return;
+            }
+
+            var requiresApiKey = endpoint?.Metadata
+                .OfType<APIKeyRequiredAttribute>()
+                .Any() ?? false;
+
+            if (!requiresApiKey) 
             {
                 await next(context);
                 return;
