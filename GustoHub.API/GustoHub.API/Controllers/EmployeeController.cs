@@ -4,6 +4,7 @@
     using GustoHub.Services.Interfaces;
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.PUT;
+    using GustoHub.Infrastructure.Attributes;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -16,18 +17,26 @@
             this.employeeService = employeeService;
         }
 
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpGet("all-active")]
         public async Task<IActionResult> GetAllActiveEmployees()
         {
             var allEmployees = await employeeService.AllActiveAsync();
             return Ok(allEmployees);
         }
+
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpGet("all-deactivated")]
         public async Task<IActionResult> GetAllDeActivatedEmployees()
         {
             var allEmployees = await employeeService.AllDeactivatedAsync();
             return Ok(allEmployees);
         }
+
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpGet("{employeeName}")]
         public async Task<IActionResult> GetEmployeeByName(string employeeName)
         {
@@ -40,12 +49,18 @@
 
             return Ok(employeeName);
         }
+
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpPost]
         public async Task<IActionResult> PostEmployee([FromBody] POSTEmployeeDto employeeDto)
         {
             string responseMessage = await employeeService.AddAsync(employeeDto);
             return Ok(responseMessage);
         }
+
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpPut("activate/{id}")]
         public async Task<IActionResult> ActivateEmployee(Guid id)
         {
@@ -56,6 +71,9 @@
 
             return Ok(await employeeService.ActivateAsync(id));
         }
+
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEmployee(PUTEmployeeDto employee, string id)
         {
@@ -66,6 +84,9 @@
 
             return Ok(await employeeService.UpdateAsync(employee, id));
         }
+
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpDelete("deactivate/{id}")]
         public async Task<IActionResult> DeactivateEmployee(Guid id)
         {

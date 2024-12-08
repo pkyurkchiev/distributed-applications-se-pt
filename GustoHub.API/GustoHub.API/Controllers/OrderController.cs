@@ -5,6 +5,7 @@
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.PUT;
     using GustoHub.API.Extensions;
+    using GustoHub.Infrastructure.Attributes;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -24,6 +25,8 @@
             this.customerService = customerService;
         }
 
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpGet("all")]
         public async Task<IActionResult> GetAllOrders()
         {
@@ -42,6 +45,7 @@
 
             return Ok(order);
         }
+
         [HttpPost]
         public async Task<IActionResult> PostOrder([FromBody] POSTOrderDto orderDto)
         {
@@ -62,6 +66,9 @@
             string responseMessage = await orderService.AddAsync(orderDto);
             return Ok(responseMessage);
         }
+
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOrder(PUTOrderDto order, int id)
         {
@@ -72,6 +79,9 @@
 
             return Ok(await orderService.UpdateAsync(order, id));
         }
+
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveOrder(int id)
         {

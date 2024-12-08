@@ -23,6 +23,7 @@
             var allCategories = await categoryService.AllAsync();
             return Ok(allCategories);
         }
+
         [HttpGet("{categoryName}")]
         public async Task<IActionResult> GetCategoryByName(string categoryName)
         {
@@ -36,12 +37,18 @@
 
             return Ok(category);
         }
+
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpPost]
         public async Task<IActionResult> PostCategory([FromBody] POSTCategoryDto categoryDto)
         {
             string responseMessage = await categoryService.AddAsync(categoryDto);
             return Ok(responseMessage);
         }
+
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCategory(PUTCategoryDto category, int id)
         {
@@ -52,6 +59,9 @@
             
             return Ok(await categoryService.UpdateAsync(category, id));
         }
+
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveCategory(int id)
         {

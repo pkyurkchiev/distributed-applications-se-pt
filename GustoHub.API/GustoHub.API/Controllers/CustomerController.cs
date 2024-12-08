@@ -6,6 +6,7 @@
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.PUT;
     using GustoHub.Services.Services;
+    using GustoHub.Infrastructure.Attributes;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -37,12 +38,18 @@
 
             return Ok(customerName);
         }
+
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpPost]
         public async Task<IActionResult> PostCustomer([FromBody] POSTCustomerDto customerDto)
         {
             string responseMessage = await customerService.AddAsync(customerDto);
             return Ok(responseMessage);
         }
+
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCusomer(PUTCustomerDto customer, string id)
         {
@@ -53,6 +60,9 @@
 
             return Ok(await customerService.UpdateAsync(customer, id));
         }
+
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveCustomer(string id)
         {

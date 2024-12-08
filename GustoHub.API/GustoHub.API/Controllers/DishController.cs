@@ -4,6 +4,7 @@
     using GustoHub.Services.Interfaces;
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.PUT;
+    using GustoHub.Infrastructure.Attributes;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -38,6 +39,9 @@
 
             return Ok(dishName);
         }
+
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpPost]
         public async Task<IActionResult> PostDish([FromBody] POSTDishDto dishDto)
         {
@@ -48,6 +52,9 @@
             string responseMessage = await dishService.AddAsync(dishDto);
             return Ok(responseMessage);
         }
+
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDish(PUTDishDto dish, int id)
         {
@@ -57,6 +64,9 @@
             }
             return Ok(await dishService.UpdateAsync(dish, id));
         }
+
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveDish(int id)
         {

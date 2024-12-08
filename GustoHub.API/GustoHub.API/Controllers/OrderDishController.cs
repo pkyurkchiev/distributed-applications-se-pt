@@ -4,7 +4,7 @@
     using GustoHub.Services.Interfaces;
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.PUT;
-    using GustoHub.Data.Models;
+    using GustoHub.Infrastructure.Attributes;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -24,6 +24,8 @@
             this.dishService = dishService;
         }
 
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpGet("all")]
         public async Task<IActionResult> GetAllOrderDishes()
         {

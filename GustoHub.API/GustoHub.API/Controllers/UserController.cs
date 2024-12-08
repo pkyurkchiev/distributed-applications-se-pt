@@ -24,8 +24,6 @@
             return Ok(userDto);
         }
 
-        [APIKeyRequired]
-        [AuthorizeRole("Admin")]
         [HttpPost]
         public async Task<IActionResult> PostUser([FromBody] POSTUserDto userDto)
         {
@@ -33,7 +31,9 @@
             string responseMessage = await userService.AddAsync(userDto);
             return Ok(responseMessage);
         }
-        
+
+        [AuthorizeRole("Admin")]
+        [APIKeyRequired]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(PUTUserDto user, string id)
         {
