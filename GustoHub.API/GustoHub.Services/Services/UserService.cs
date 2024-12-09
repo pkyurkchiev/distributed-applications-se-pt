@@ -26,11 +26,6 @@
 
         public async Task<string> AddAsync(POSTUserDto userDto)
         {
-            //if (await repository.AllAsReadOnly<User>().AnyAsync(u => u.Username == userDto.Username))
-            //{
-            //    throw new InvalidOperationException("Username is already taken.");
-            //}
-
             User user = new User()
             {
                 Username = userDto.Username,

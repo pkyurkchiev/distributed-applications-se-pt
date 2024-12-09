@@ -27,9 +27,12 @@
         [HttpPost]
         public async Task<IActionResult> PostUser([FromBody] POSTUserDto userDto)
         {
-            //Check for username duplicate, it must be unique.
-
+            if (await userService.ExistsByUsernameAsync(userDto.Username))
+            {
+                return BadRequest("There is an existing user with that username. Please choose another.");
+            }
             string responseMessage = await userService.AddAsync(userDto);
+
             return Ok(responseMessage);
         }
 
@@ -42,6 +45,7 @@
             {
                 return NotFound("User not found!");
             }
+
 
             return Ok(await userService.UpdateAsync(user, Guid.Parse(id)));
         }
