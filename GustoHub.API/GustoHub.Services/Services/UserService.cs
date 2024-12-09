@@ -14,24 +14,44 @@
     public class UserService : IUserService
     {
         private readonly IRepository repository;
+        private readonly IEmailService emailService;
 
-        public UserService(IRepository repository)
+        public UserService(
+            IRepository repository,
+            IEmailService emailService)
         {
             this.repository = repository;
+            this.emailService = emailService;
         }
 
         public async Task<string> AddAsync(POSTUserDto userDto)
         {
+            //if (await repository.AllAsReadOnly<User>().AnyAsync(u => u.Username == userDto.Username))
+            //{
+            //    throw new InvalidOperationException("Username is already taken.");
+            //}
+
             User user = new User()
             {
                 Username = userDto.Username,
                 Role = userDto.Role,
                 PasswordHash = BCrypt.HashPassword(userDto.Password),
                 CreatedAt = DateTime.Now,
+                IsVerified = false
             };
 
             await repository.AddAsync(user);
             await repository.SaveChangesAsync();
+
+            GETUserDto getUserDto = new GETUserDto()
+            {
+                Id = user.Id.ToString(),
+                Username = user.Username,
+                CreatedAt = user.CreatedAt.ToShortDateString(),
+                Role = user.Role,
+            };
+
+            await emailService.SendAdminApprovalRequestAsync(getUserDto);
 
             return "User added Successfully!";
         }

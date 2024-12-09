@@ -21,6 +21,8 @@ namespace GustoHub.API.Extensions
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IApiKeyService, ApiKeyService>();
 
+            services.AddScoped<IEmailService, EmailService>();
+
             return services;
         }
 

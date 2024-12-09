@@ -1,6 +1,5 @@
 ﻿namespace GustoHub.Services.Interfaces
 {
-    using GustoHub.Data.Models;
     using GustoHub.Data.ViewModels.GET;
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.PUT;

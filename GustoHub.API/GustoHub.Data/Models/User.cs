@@ -18,6 +18,8 @@ namespace GustoHub.Data.Models
         [Required]
         public DateTime CreatedAt { get; set; }
 
+        public bool IsVerified { get; set; }
+
         public virtual ICollection<ApiKey> ApiKeys { get; set; } = new List<ApiKey>();
     }
 }

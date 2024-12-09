@@ -28,6 +28,7 @@
         public async Task<IActionResult> PostUser([FromBody] POSTUserDto userDto)
         {
             //Check for username duplicate, it must be unique.
+
             string responseMessage = await userService.AddAsync(userDto);
             return Ok(responseMessage);
         }
