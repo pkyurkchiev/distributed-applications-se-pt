@@ -53,9 +53,9 @@
         [AuthorizeRole("Admin")]
         [APIKeyRequired]
         [HttpPost]
-        public async Task<IActionResult> PostEmployee([FromBody] POSTEmployeeDto employeeDto)
+        public async Task<IActionResult> PostEmployee([FromBody] POSTEmployeeDto employeeDto, Guid userId)
         {
-            string responseMessage = await employeeService.AddAsync(employeeDto);
+            string responseMessage = await employeeService.AddAsync(employeeDto, userId);
             return Ok(new { message = responseMessage });
         }
 

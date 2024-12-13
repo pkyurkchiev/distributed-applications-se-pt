@@ -19,15 +19,21 @@
         {
             this.repository = repository;
         }
-        public async Task<string> AddAsync(POSTEmployeeDto employeeDto)
+        public async Task<string> AddAsync(POSTEmployeeDto employeeDto, Guid userId)
         {
+            var user = await repository.GetByIdAsync<User>(userId);
+
             Employee employee = new Employee()
             {
                 Name = employeeDto.Name,
                 Title = employeeDto.Title,
                 HireDate = DateTime.Now,
                 IsActive = true,
+                EmployeeUserId = userId,
+                User = user
             };
+
+            user.EmployeeId = employee.Id;
 
             await repository.AddAsync(employee);
             await repository.SaveChangesAsync();

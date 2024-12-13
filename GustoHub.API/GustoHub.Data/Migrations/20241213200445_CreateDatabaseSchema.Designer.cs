@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GustoHub.Data.Migrations
 {
     [DbContext(typeof(GustoHubDbContext))]
-    [Migration("20241207170316_AddUserEntityWithApiKeyRelation")]
-    partial class AddUserEntityWithApiKeyRelation
+    [Migration("20241213200445_CreateDatabaseSchema")]
+    partial class CreateDatabaseSchema
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -133,6 +133,9 @@ namespace GustoHub.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("EmployeeUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("HireDate")
                         .HasColumnType("datetime2");
 
@@ -213,6 +216,12 @@ namespace GustoHub.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsVerified")
+                        .HasColumnType("bit");
+
                     b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -226,6 +235,10 @@ namespace GustoHub.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId")
+                        .IsUnique()
+                        .HasFilter("[EmployeeId] IS NOT NULL");
 
                     b.ToTable("Users");
                 });
@@ -290,6 +303,16 @@ namespace GustoHub.Data.Migrations
                     b.Navigation("Order");
                 });
 
+            modelBuilder.Entity("GustoHub.Data.Models.User", b =>
+                {
+                    b.HasOne("GustoHub.Data.Models.Employee", "Employee")
+                        .WithOne("User")
+                        .HasForeignKey("GustoHub.Data.Models.User", "EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Employee");
+                });
+
             modelBuilder.Entity("GustoHub.Data.Models.Category", b =>
                 {
                     b.Navigation("Dishes");
@@ -308,6 +331,8 @@ namespace GustoHub.Data.Migrations
             modelBuilder.Entity("GustoHub.Data.Models.Employee", b =>
                 {
                     b.Navigation("Orders");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("GustoHub.Data.Models.Order", b =>

@@ -7,7 +7,7 @@
 
     public interface IEmployeeService
     {
-        Task<string> AddAsync(POSTEmployeeDto employeeDto);
+        Task<string> AddAsync(POSTEmployeeDto employeeDto, Guid userId);
         Task<bool> ExistsByIdAsync(Guid employeeId);
         Task<GETEmployeeDto> GetByIdAsync(Guid employeeId);
         Task<GETEmployeeDto> GetByNameAsync(string employeeName);

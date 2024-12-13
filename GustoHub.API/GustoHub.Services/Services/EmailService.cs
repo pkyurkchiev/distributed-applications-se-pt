@@ -25,7 +25,7 @@ namespace GustoHub.Services.Services
             var smtpServer = emailSettings["SmtpServer"];
             var smtpPort = int.Parse(emailSettings["SmtpPort"]);
 
-            var verificationLink = $"https://localhost:7033/api/user/verify?userId={newUser.Id}";
+            var verificationLink = $"https://localhost:54736/api/user/verify?userId={newUser.Id}";
 
             var subject = "New User Access Request";
             var body = $@"

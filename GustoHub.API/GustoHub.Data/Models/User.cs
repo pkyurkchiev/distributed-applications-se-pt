@@ -20,6 +20,9 @@ namespace GustoHub.Data.Models
 
         public bool IsVerified { get; set; }
 
+        public Guid? EmployeeId { get; set; } 
+        public virtual Employee? Employee { get; set; }
+
         public virtual ICollection<ApiKey> ApiKeys { get; set; } = new List<ApiKey>();
     }
 }
