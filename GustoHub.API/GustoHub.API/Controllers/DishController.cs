@@ -34,10 +34,10 @@
 
             if (dish == null)
             {
-                return NotFound("Dish not found!");
+                return NotFound( new {message = "Dish not found!" });
             }
 
-            return Ok(dishName);
+            return Ok(dish);
         }
 
         [AuthorizeRole("Admin")]
@@ -50,7 +50,7 @@
                 return NotFound("Category not found!");
             }
             string responseMessage = await dishService.AddAsync(dishDto);
-            return Ok(responseMessage);
+            return Ok(new { message = responseMessage });
         }
 
         [AuthorizeRole("Admin")]
@@ -62,7 +62,9 @@
             {
                 return NotFound("Dish not found!");
             }
-            return Ok(await dishService.UpdateAsync(dish, id));
+            string responseMessage = await dishService.UpdateAsync(dish, id);
+
+            return Ok(new {message = responseMessage});
         }
 
         [AuthorizeRole("Admin")]
@@ -74,8 +76,9 @@
             {
                 return NotFound("Dish not found!");
             }
+            string responseMessage = await dishService.Remove(id);
 
-            return Ok(await dishService.Remove(id));
+            return Ok(new { message = responseMessage });
         }
     }
 }

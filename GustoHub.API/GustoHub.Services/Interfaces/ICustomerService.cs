@@ -10,7 +10,7 @@
         Task<string> AddAsync(POSTCustomerDto customer);
         Task<bool> ExistsByIdAsync(Guid customerId);
         Task<GETCustomerDto> GetByIdAsync(Guid customerId);
-        Task<GETCustomerDto> GetByNameAsync(string customerName);
+        Task<GETCustomerDto?> GetByNameAsync(string customerName);
         Task<IEnumerable<GETCustomerDto>> AllAsync();
         Task<string> Remove(Guid customerId);
         Task<string> UpdateAsync(PUTCustomerDto customer, string customerId);

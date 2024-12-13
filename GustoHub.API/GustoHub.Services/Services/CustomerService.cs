@@ -69,9 +69,14 @@
             return customerDto;
         }
 
-        public async Task<GETCustomerDto> GetByNameAsync(string customerName)
+        public async Task<GETCustomerDto?> GetByNameAsync(string customerName)
         {
-            Customer customer = await repository.AllAsReadOnly<Customer>().FirstOrDefaultAsync(e => e.Name == customerName);
+            Customer? customer = repository.AllAsReadOnly<Customer>().FirstOrDefaultAsync(e => e.Name == customerName).Result;
+
+            if (customer == null)
+            {
+                return null;
+            }
 
             GETCustomerDto customerDto = new GETCustomerDto()
             {

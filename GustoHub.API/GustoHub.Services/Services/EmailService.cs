@@ -25,14 +25,19 @@ namespace GustoHub.Services.Services
             var smtpServer = emailSettings["SmtpServer"];
             var smtpPort = int.Parse(emailSettings["SmtpPort"]);
 
+            var verificationLink = $"https://localhost:7033/api/user/verify?userId={newUser.Id}";
+
             var subject = "New User Access Request";
             var body = $@"
             A new user has requested access to the platform:
-            ID: {newUser.Id}
-            Username: {newUser.Username}
-            Registered At: {newUser.CreatedAt}
-
-            Please review and approve their access in the admin panel.
+            <br />
+            <b>ID:</b> {newUser.Id} <br />
+            <b>Username:</b> {newUser.Username} <br />
+            <b>Registered At:</b> {newUser.CreatedAt} <br />
+            <br />
+            To approve their access, click the link below:
+            <br />
+            <a href='{verificationLink}'>Verify and Approve User</a>
         ";
 
             using var smtpClient = new SmtpClient(smtpServer, smtpPort)
@@ -46,7 +51,7 @@ namespace GustoHub.Services.Services
 
             var mailMessage = new MailMessage(senderEmail, adminEmail, subject, body)
             {
-                IsBodyHtml = false, 
+                IsBodyHtml = true, 
                 BodyEncoding = Encoding.UTF8,
                 SubjectEncoding = Encoding.UTF8
             };

@@ -44,10 +44,10 @@
 
             if (employee == null)
             {
-                return NotFound("Employee not found!");
+                return NotFound(new {message = "Employee not found!" });
             }
 
-            return Ok(employeeName);
+            return Ok(employee);
         }
 
         [AuthorizeRole("Admin")]
@@ -56,7 +56,7 @@
         public async Task<IActionResult> PostEmployee([FromBody] POSTEmployeeDto employeeDto)
         {
             string responseMessage = await employeeService.AddAsync(employeeDto);
-            return Ok(responseMessage);
+            return Ok(new { message = responseMessage });
         }
 
         [AuthorizeRole("Admin")]
@@ -69,7 +69,9 @@
                 return NotFound("Employee not found!");
             }
 
-            return Ok(await employeeService.ActivateAsync(id));
+            string responseMessage = await employeeService.ActivateAsync(id);
+
+            return Ok(new {message = responseMessage});
         }
 
         [AuthorizeRole("Admin")]
@@ -82,7 +84,9 @@
                 return NotFound("Employee not found!");
             }
 
-            return Ok(await employeeService.UpdateAsync(employee, id));
+            string responseMessage = await employeeService.UpdateAsync(employee, id);
+
+            return Ok(new {message = responseMessage});
         }
 
         [AuthorizeRole("Admin")]
@@ -95,7 +99,9 @@
                 return NotFound("Employee not found!");
             }
 
-            return Ok(await employeeService.DeactivateAsync(id));
+            string responseMessage = await employeeService.DeactivateAsync(id);
+
+            return Ok(new { message = responseMessage });
         }
     }
 }

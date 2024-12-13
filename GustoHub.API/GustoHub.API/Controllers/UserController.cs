@@ -17,6 +17,8 @@
             this.userService = userService;
         }
 
+        [APIKeyRequired]
+        [AuthorizeRole("Admin")]
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetUserById(string userId)
         {
@@ -31,13 +33,22 @@
             {
                 return BadRequest("There is an existing user with that username. Please choose another.");
             }
-            string responseMessage = await userService.AddAsync(userDto);
 
-            return Ok(responseMessage);
+            try
+            {
+                string responseMessage = await userService.AddAsync(userDto);
+
+                return Ok(new { message = responseMessage + "An email is sent to an admin, to verify the user."});
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error during user verification: {e.Message}");
+                return StatusCode(500, new { error = "An error occurred while verifying the user." });
+            }
         }
 
-        [AuthorizeRole("Admin")]
         [APIKeyRequired]
+        [AuthorizeRole("Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(PUTUserDto user, string id)
         {
@@ -46,8 +57,41 @@
                 return NotFound("User not found!");
             }
 
+            string responseMessage = await userService.UpdateAsync(user, Guid.Parse(id));
 
-            return Ok(await userService.UpdateAsync(user, Guid.Parse(id)));
+            return Ok(new {message = responseMessage});
+        }
+
+        [HttpGet("verify")]
+        public async Task<IActionResult> VerifyUser(Guid userId)
+        {
+            try
+            {
+                var user = await userService.GetByIdAsync(userId);
+                if (user == null)
+                {
+                    return NotFound(new { error = "User not found." });
+                }
+
+                if (user.IsVerified)
+                {
+                    return BadRequest(new { message = "User is already verified." });
+                }
+
+                var updateDto = new PUTVerifyUserDto
+                {
+                    IsVerified = true,
+                };
+
+                await userService.VerifyAsync(updateDto, userId);
+
+                return Ok(new { message = "User successfully verified." });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error during user verification: {ex.Message}");
+                return StatusCode(500, new { error = "An error occurred while verifying the user." });
+            }
         }
     }
 }

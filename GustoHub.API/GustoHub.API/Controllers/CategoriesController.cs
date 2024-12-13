@@ -6,6 +6,7 @@
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Infrastructure.Attributes;
 
+    [APIKeyRequired]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriesController : ControllerBase
@@ -39,16 +40,14 @@
         }
 
         [AuthorizeRole("Admin")]
-        [APIKeyRequired]
         [HttpPost]
         public async Task<IActionResult> PostCategory([FromBody] POSTCategoryDto categoryDto)
         {
             string responseMessage = await categoryService.AddAsync(categoryDto);
-            return Ok(responseMessage);
+            return Ok(new { message = responseMessage });
         }
 
         [AuthorizeRole("Admin")]
-        [APIKeyRequired]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCategory(PUTCategoryDto category, int id)
         {
@@ -56,12 +55,13 @@
             {
                 return NotFound("Category not found!");
             }
-            
-            return Ok(await categoryService.UpdateAsync(category, id));
+
+            string responseMessage = await categoryService.UpdateAsync(category, id);
+
+            return Ok(new { message = responseMessage });
         }
 
         [AuthorizeRole("Admin")]
-        [APIKeyRequired]
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveCategory(int id)
         {
@@ -70,7 +70,9 @@
                 return NotFound("Category not found!");
             }
 
-            return Ok(await categoryService.Remove(id));
+            string responseMessage = await categoryService.Remove(id);
+
+            return Ok(new { message = responseMessage });
         }
     }
 }

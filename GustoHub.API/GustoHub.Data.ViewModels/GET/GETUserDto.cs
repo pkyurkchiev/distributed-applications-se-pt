@@ -9,5 +9,7 @@
         public string Role { get; set; } = null!;
 
         public string CreatedAt { get; set; } = null!;
+
+        public bool IsVerified { get; set; }
     }
 }

@@ -29,7 +29,7 @@
             User user = new User()
             {
                 Username = userDto.Username,
-                Role = userDto.Role,
+                Role = "Default",
                 PasswordHash = BCrypt.HashPassword(userDto.Password),
                 CreatedAt = DateTime.Now,
                 IsVerified = false
@@ -56,6 +56,11 @@
             return await repository.AllAsReadOnly<User>().AnyAsync(u => u.Id == userId);
         }
 
+        public async Task<bool> ExistsByUsernameAsync(string username)
+        {
+            return await repository.AllAsReadOnly<User>().AnyAsync(u => u.Username == username);
+        }
+
         public async Task<GETUserDto> GetByIdAsync(Guid userId)
         {
             User? user = await repository.GetByIdAsync<User>(userId);
@@ -66,6 +71,7 @@
                 Username = user.Username,
                 Role = user.Role,
                 CreatedAt = user.CreatedAt.ToShortDateString(),
+                IsVerified = user.IsVerified,
             };
 
             return userDto;
@@ -75,10 +81,21 @@
         {
             User? user = await repository.GetByIdAsync<User>(userId);
 
+            user.IsVerified = userDto.IsVerified;
             user.Role = userDto.Role;
 
             await repository.SaveChangesAsync();
             return "User updated Successfully!";
+        }
+
+        public async Task<string> VerifyAsync(PUTVerifyUserDto userDto, Guid userId)
+        {
+            User? user = await repository.GetByIdAsync<User>(userId);
+
+            user.IsVerified = userDto.IsVerified;
+
+            await repository.SaveChangesAsync();
+            return "User verified Successfully!";
         }
     }
 }

@@ -49,7 +49,6 @@
         [HttpPost]
         public async Task<IActionResult> PostOrder([FromBody] POSTOrderDto orderDto)
         {
-            //Might make optimisation here if only get one employee and pass it's params bellow.
             if (!await employeeService.ExistsByIdAsync(Guid.Parse(orderDto.EmployeeId)))
             {
                 return NotFound("Employee not found!");
@@ -64,7 +63,7 @@
             }
 
             string responseMessage = await orderService.AddAsync(orderDto);
-            return Ok(responseMessage);
+            return Ok(new { message = responseMessage });
         }
 
         [AuthorizeRole("Admin")]
@@ -77,7 +76,8 @@
                 return NotFound("Order not found!");
             }
 
-            return Ok(await orderService.UpdateAsync(order, id));
+            string responseMessage = await orderService.UpdateAsync(order, id);
+            return Ok(new { message = responseMessage });
         }
 
         [AuthorizeRole("Admin")]
@@ -89,8 +89,8 @@
             {
                 return NotFound("Order not found!");
             }
-
-            return Ok(await orderService.Remove(id));
+            string responseMessage = await orderService.Remove(id);
+            return Ok(new { message = responseMessage });
         }
     }
 }

@@ -1,13 +1,12 @@
 ﻿namespace GustoHub.API.Controllers
 {
-    using GustoHub.Data.Models;
     using Microsoft.AspNetCore.Mvc;
     using GustoHub.Services.Interfaces;
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.PUT;
-    using GustoHub.Services.Services;
     using GustoHub.Infrastructure.Attributes;
 
+    [APIKeyRequired]
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
@@ -25,31 +24,30 @@
             var allCustomers = await customerService.AllAsync();
             return Ok(allCustomers);
         }
+
         [HttpGet("{customerName}")]
         public async Task<IActionResult> GetCustomerByName(string customerName)
-        {            
+        {
             var customer
                 = await customerService.GetByNameAsync(customerName);
 
             if (customer == null)
             {
-                return NotFound("Cutomer not found!");
+                return NotFound(new {message = "Customer not found!" });
             }
 
-            return Ok(customerName);
+            return Ok(customer);
         }
 
         [AuthorizeRole("Admin")]
-        [APIKeyRequired]
         [HttpPost]
         public async Task<IActionResult> PostCustomer([FromBody] POSTCustomerDto customerDto)
         {
             string responseMessage = await customerService.AddAsync(customerDto);
-            return Ok(responseMessage);
+            return Ok(new { message = responseMessage });
         }
 
         [AuthorizeRole("Admin")]
-        [APIKeyRequired]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCusomer(PUTCustomerDto customer, string id)
         {
@@ -58,11 +56,12 @@
                 return NotFound("Cutomer not found!");
             }
 
-            return Ok(await customerService.UpdateAsync(customer, id));
+            string responseMessage = await customerService.UpdateAsync(customer, id);
+
+            return Ok(new { message = responseMessage });
         }
 
         [AuthorizeRole("Admin")]
-        [APIKeyRequired]
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveCustomer(string id)
         {
@@ -71,7 +70,9 @@
                 return NotFound("Cutomer not found!");
             }
 
-            return Ok(await customerService.Remove(Guid.Parse(id)));
+            string responseMessage = await customerService.Remove(Guid.Parse(id));
+
+            return Ok(new { message = responseMessage });
         }
     }
 }

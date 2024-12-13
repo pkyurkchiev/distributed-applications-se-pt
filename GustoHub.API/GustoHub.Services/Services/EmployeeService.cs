@@ -7,7 +7,6 @@
     using System.Collections.Generic;
     using GustoHub.Services.Interfaces;
     using Microsoft.EntityFrameworkCore;
-    using System.Globalization;
     using GustoHub.Data.ViewModels.POST;
     using GustoHub.Data.ViewModels.GET;
     using GustoHub.Data.ViewModels.PUT;
@@ -26,7 +25,7 @@
             {
                 Name = employeeDto.Name,
                 Title = employeeDto.Title,
-                HireDate = DateTime.ParseExact(employeeDto.HireDate, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture),
+                HireDate = DateTime.Now,
                 IsActive = true,
             };
 

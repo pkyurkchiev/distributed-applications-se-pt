@@ -65,9 +65,14 @@
             return dishDto;
         }
 
-        public async Task<GETDishDto> GetByNameAsync(string dishName)
+        public async Task<GETDishDto?> GetByNameAsync(string dishName)
         {
             Dish dish = await repository.AllAsReadOnly<Dish>().FirstOrDefaultAsync(d => d.Name == dishName);
+
+            if (dish == null)
+            {
+                return null;
+            }
 
             GETDishDto dishDto = new GETDishDto()
             {
