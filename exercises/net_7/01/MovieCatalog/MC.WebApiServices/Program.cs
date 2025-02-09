@@ -8,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
-builder.Services.AddDbContext<MoviesDbContext>(options => options.UseSqlServer(connectionString));
+string assemblyName = Assembly.GetExecutingAssembly().GetName().Name ?? "wrong name";
+builder.Services.AddDbContext<MoviesDbContext>(options => options.UseSqlServer(connectionString, b => b.MigrationsAssembly(assemblyName)));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -16,7 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
     // using System.Reflection;
-    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlFilename = $"{assemblyName}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 
