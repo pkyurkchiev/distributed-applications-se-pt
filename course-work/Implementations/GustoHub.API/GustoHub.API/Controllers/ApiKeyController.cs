@@ -17,6 +17,11 @@
             this.apiKeyService = apiKeyService;
         }
 
+        /// <summary>
+        /// Generates a new API key for a user.
+        /// </summary>
+        /// <param name="request">The request containing the User ID.</param>
+        /// <returns>The generated API key.</returns>
         [HttpPost("generate")]
         public async Task<IActionResult> GenerateApiKey([FromBody] POSTApiKey request)
         {
@@ -24,6 +29,11 @@
             return Ok(new { apiKey });
         }
 
+        /// <summary>
+        /// Revokes an existing API key.
+        /// </summary>
+        /// <param name="request">The request containing the API key to be revoked.</param>
+        /// <returns>A success message confirming the revocation.</returns>
         [HttpPost("revoke")]
         public async Task<IActionResult> RevokeApiKey([FromBody] PUTRevokeApiKey request)
         {

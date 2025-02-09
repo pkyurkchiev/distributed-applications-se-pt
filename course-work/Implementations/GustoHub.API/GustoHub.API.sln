@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GustoHub.Services", "GustoH
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GustoHub.Data.ViewModels", "GustoHub.Data.ViewModels\GustoHub.Data.ViewModels.csproj", "{2AAA204E-B7BB-44D6-9F9A-E9459227BD0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GustoHub.Infrastructure", "GustoHub.Infrastructure\GustoHub.Infrastructure.csproj", "{B4F3397B-C81F-454A-AE24-208458601080}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GustoHub.Infrastructure", "GustoHub.Infrastructure\GustoHub.Infrastructure.csproj", "{B4F3397B-C81F-454A-AE24-208458601080}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GustoUIConsole", "GustoUIConsole\GustoUIConsole.csproj", "{FFFF7DE0-CB19-43E2-AFF1-79AE421DCEC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{B4F3397B-C81F-454A-AE24-208458601080}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4F3397B-C81F-454A-AE24-208458601080}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4F3397B-C81F-454A-AE24-208458601080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFFF7DE0-CB19-43E2-AFF1-79AE421DCEC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFFF7DE0-CB19-43E2-AFF1-79AE421DCEC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFFF7DE0-CB19-43E2-AFF1-79AE421DCEC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFFF7DE0-CB19-43E2-AFF1-79AE421DCEC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

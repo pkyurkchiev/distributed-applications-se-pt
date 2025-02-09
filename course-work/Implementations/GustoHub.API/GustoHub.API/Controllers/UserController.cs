@@ -17,6 +17,11 @@
             this.userService = userService;
         }
 
+        /// <summary>
+        /// Retrieves a user by ID. (Admin Only, API Key Required)
+        /// </summary>
+        /// <param name="userId">The unique identifier of the user.</param>
+        /// <returns>A user details if found.</returns>
         [APIKeyRequired]
         [AuthorizeRole("Admin")]
         [HttpGet("{userId}")]
@@ -26,6 +31,11 @@
             return Ok(userDto);
         }
 
+        /// <summary>
+        /// Creates a new user.
+        /// </summary>
+        /// <param name="userDto">The user data to be created.</param>
+        /// <returns>A success message or error.</returns>
         [HttpPost]
         public async Task<IActionResult> PostUser([FromBody] POSTUserDto userDto)
         {
@@ -47,6 +57,12 @@
             }
         }
 
+        /// <summary>
+        /// Updates a user's details. (Admin Only, API Key Required)
+        /// </summary>
+        /// <param name="id">The unique identifier of the user to be updated.</param>
+        /// <param name="user">The updated user data.</param>
+        /// <returns>A success message or error.</returns>
         [APIKeyRequired]
         [AuthorizeRole("Admin")]
         [HttpPut("{id}")]
@@ -62,6 +78,11 @@
             return Ok(new {message = responseMessage});
         }
 
+        /// <summary>
+        /// Verifies a user by ID.
+        /// </summary>
+        /// <param name="userId">The unique identifier of the user to be verified.</param>
+        /// <returns>A success message or error.</returns>
         [HttpGet("verify")]
         public async Task<IActionResult> VerifyUser(Guid userId)
         {
