@@ -1,0 +1,110 @@
+from fastapi import HTTPException, status
+from typing import List
+from datetime import datetime
+
+def check_account_exists(credentials: HTTPBasicCredentials, db) -> bool:
+    cursor = db.cursor()
+    cursor.execute(
+        "SELECT 1 FROM students WHERE username = ?",
+        (credentials.username,)
+    )
+    exists = cursor.fetchone() is not None
+    return exists
+
+def authenticate_user(credentials: HTTPBasicCredentials):
+    db = get_db()
+    cursor = db.cursor()
+
+    # First check if account exists
+    if not check_account_exists(credentials, db):
+        db.close()
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Account not found"
+        )
+
+    password_hash = hashlib.sha256(credentials.password.encode()).hexdigest()
+
+    cursor.execute(
+        "SELECT student_id, username FROM students WHERE username = ? AND password_hash = ?",
+        (credentials.username, password_hash)
+    )
+    user = cursor.fetchone()
+
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid credentials"
+        )
+
+    db.close()
+    return user['student_id']
+
+@app.get("/student/chats")
+async def get_student_chat_history(
+    credentials: HTTPBasicCredentials = Depends(security),
+    limit: int = 10,
+    offset: int = 0
+):
+    current_user_id = authenticate_user(credentials)
+    db = get_db()
+    cursor = db.cursor()
+
+    # Get all chats where the student is involved
+    cursor.execute("""
+        SELECT 
+            m.match_id,
+            m.created_at as match_created_at,
+            m.status,
+            CASE 
+                WHEN m.student1_id = ? THEN m.student2_id
+                ELSE m.student1_id
+            END as other_student_id,
+            s.username as other_student_name,
+            s.major as other_student_major,
+            (
+                SELECT message 
+                FROM chat_messages 
+                WHERE match_id = m.match_id 
+                ORDER BY created_at DESC 
+                LIMIT 1
+            ) as last_message,
+            (
+                SELECT created_at 
+                FROM chat_messages 
+                WHERE match_id = m.match_id 
+                ORDER BY created_at DESC 
+                LIMIT 1
+            ) as last_message_time
+        FROM matches m
+        JOIN students s ON (
+            CASE 
+                WHEN m.student1_id = ? THEN m.student2_id
+                ELSE m.student1_id
+            END = s.student_id
+        )
+        WHERE (m.student1_id = ? OR m.student2_id = ?)
+        AND m.status = 'active'
+        ORDER BY last_message_time DESC NULLS LAST
+        LIMIT ? OFFSET ?
+    """, (current_user_id, current_user_id, current_user_id, current_user_id, limit, offset))
+
+    chats = [dict(row) for row in cursor.fetchall()]
+
+    # Get total count for pagination
+    cursor.execute("""
+        SELECT COUNT(*) as total 
+        FROM matches 
+        WHERE (student1_id = ? OR student2_id = ?)
+        AND status = 'active'
+    """, (current_user_id, current_user_id))
+    
+    total = dict(cursor.fetchone())['total']
+
+    db.close()
+    return {
+        "chats": chats,
+        "total": total,
+        "limit": limit,
+        "offset": offset
+    }

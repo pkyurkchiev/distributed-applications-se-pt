@@ -1,0 +1,24 @@
+﻿<Window x:Class="VectorGraphicsEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Vector Graphics Editor" Height="600" Width="800">
+
+    <Grid>
+        <!-- Панел с инструменти -->
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="5">
+            <TextBlock Text="Цвят:" VerticalAlignment="Center"/>
+            <ComboBox x:Name="ColorPicker" Width="100" SelectionChanged="ColorPicker_SelectionChanged">
+                <ComboBoxItem Content="Черно" Tag="Black" IsSelected="True"/>
+                <ComboBoxItem Content="Червено" Tag="Red"/>
+                <ComboBoxItem Content="Синьо" Tag="Blue"/>
+                <ComboBoxItem Content="Зелено" Tag="Green"/>
+            </ComboBox>
+
+            <TextBlock Text="Дебелина:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            <Slider x:Name="ThicknessSlider" Minimum="1" Maximum="10" Value="3" Width="100" ValueChanged="ThicknessSlider_ValueChanged"/>
+        </StackPanel>
+
+        <!-- Основен Canvas за рисуване -->
+        <Canvas x:Name="DrawingCanvas" Background="White" Margin="0,40,0,0"/>
+    </Grid>
+</Window>
